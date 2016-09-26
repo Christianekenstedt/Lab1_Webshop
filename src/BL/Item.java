@@ -18,6 +18,10 @@ public class Item {
         return ItemDB.getItem(id);
     }
 
+    public static void postItem(String name){
+        ItemDB.postItem(name);
+    }
+
     public String getName() {
         return name;
     }

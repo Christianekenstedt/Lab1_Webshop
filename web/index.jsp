@@ -8,5 +8,12 @@
   <body>
   <% ItemVO item = ItemVO.viewItem(1); %>
   Name: <%=item.getName()%>
+
+  <% ItemVO.postItem("Bildäck");%>
+  <form action="index.jsp" method="post">
+      <input id="name" type="text"/>
+      <button type="submit">Save</button>
+  </form>
+
   </body>
 </html>

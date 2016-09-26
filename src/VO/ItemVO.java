@@ -11,13 +11,17 @@ public class ItemVO {
     private String name;
     private int id;
 
-    public ItemVO(Item item){
+    private ItemVO(Item item){
         this.id = item.getId();
         this.name = item.getName();
     }
 
     public static ItemVO viewItem(int id){
         return new ItemVO(Item.getItem(id));
+    }
+
+    public static void postItem(String name){
+        Item.postItem(name);
     }
 
     public String getName() {

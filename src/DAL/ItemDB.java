@@ -15,4 +15,9 @@ public class ItemDB extends Item {
         //TODO: get item from db.
         return new ItemDB(id,"Skjorta");
     }
+
+    public static void postItem(String name){
+        //TODO: Save item to db.
+        System.out.println("skapar: " + name);
+    }
 }
