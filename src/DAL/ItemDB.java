@@ -2,6 +2,8 @@ package DAL;
 
 import BL.Item;
 
+import java.sql.Connection;
+
 /**
  * Created by Christian on 2016-09-26.
  */
@@ -18,6 +20,8 @@ public class ItemDB extends Item {
 
     public static void postItem(String name){
         //TODO: Save item to db.
+
+        Connection con = DBManager.getConnection();
         System.out.println("skapar: " + name);
     }
 }
