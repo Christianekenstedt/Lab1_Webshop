@@ -2,31 +2,57 @@ package BL;
 
 import DAL.ItemDB;
 
+import java.util.Collection;
+import java.util.Vector;
+
 /**
  * Created by Christian on 2016-09-26.
  */
-public class Item {
+public abstract class Item {
     private String name;
     private int id;
+    private int amount;
+    private ItemCategory category;
 
-    protected Item(int id, String name){
+    protected Item(int id, String name, int amount, ItemCategory category){
         this.name=name;
         this.id=id;
+        this.amount = amount;
     }
 
-    public static Item getItem(int id){
-        return ItemDB.getItem(id);
+    public static Collection<Item> getAll(){
+        return ItemDB.getAllFromDB();
     }
 
-    public static void postItem(String name, int amount, int category){
-        ItemDB.newItem(name, amount, category);
+    public static Item get(int id){
+        return ItemDB.getFromDB(id);
+    }
+
+    public static void addItem(String name, int amount, ItemCategory category){
+        ItemDB.addItemToDB(name, amount, category);
+    }
+
+    public static void delete(int id){
+        ItemDB.deleteFromDB(id);
+    }
+
+    public static void update(int id, String name, int amount, ItemCategory category){
+        ItemDB.updateInDB(id, name, amount, category);
+    }
+
+    public ItemCategory getCategory(){
+        return this.category;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public int getId() {
-        return id;
+        return this.id;
+    }
+
+    public int getAmount(){
+        return this.amount;
     }
 }

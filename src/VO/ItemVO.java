@@ -1,8 +1,9 @@
 package VO;
 
-import BL.Item;
+import BL.*;
 
 import java.util.Hashtable;
+import java.util.Vector;
 
 /**
  * Created by Christian on 2016-09-26.
@@ -10,18 +11,24 @@ import java.util.Hashtable;
 public class ItemVO {
     private String name;
     private int id;
+    private int amount;
 
     private ItemVO(Item item){
         this.id = item.getId();
         this.name = item.getName();
+        this.amount = item.getAmount();
     }
 
-    public static ItemVO viewItem(int id){
-        return new ItemVO(Item.getItem(id));
+    public static ItemVO get(int id){
+        return new ItemVO(Item.get(id));
     }
 
-    public static void postItem(String name, int amount, int category){
-        Item.postItem(name, amount, category);
+    public static Vector<ItemVO> getAll(){
+        Vector<ItemVO> items = new Vector<>();
+        for(Item item : Item.getAll()){
+            items.add(new ItemVO(item));
+        }
+        return items;
     }
 
     public String getName() {
@@ -31,4 +38,6 @@ public class ItemVO {
     public int getId() {
         return id;
     }
+
+    public int getAmount(){return amount;}
 }

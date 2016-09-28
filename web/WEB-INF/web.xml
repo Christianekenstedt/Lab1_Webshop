@@ -3,8 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+    <display-name>Webshop</display-name>
     <servlet>
-        <servlet-name>ControllerServlet</servlet-name>
-        <servlet-class>VO.ControllerServlet</servlet-class>
+        <display-name>Login</display-name>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>Controllers.LoginController</servlet-class>
     </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/LoginController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ItemController</servlet-name>
+        <servlet-class>Controllers.ItemController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItemController</servlet-name>
+        <url-pattern>/ItemController</url-pattern>
+    </servlet-mapping>
 </web-app>
