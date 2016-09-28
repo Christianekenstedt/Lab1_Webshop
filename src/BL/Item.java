@@ -1,6 +1,8 @@
 package BL;
 
 import DAL.ItemDB;
+import com.microsoft.sqlserver.jdbc.SQLServerConnection;
+import java.sql.Connection;
 
 /**
  * Created by Christian on 2016-09-26.
