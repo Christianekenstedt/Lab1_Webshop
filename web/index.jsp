@@ -1,5 +1,6 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="VO.ItemVO" %>
+<%@ page import="VO.OrderVO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
@@ -10,6 +11,8 @@
   Name: <%=item.getName()%>
 
   <% ItemVO.postItem("Bildäck", 5, -1);%>
+
+  <% OrderVO.postOrder();%>
   <form action="index.jsp" method="post">
       <input id="name" type="text"/>
       <button type="submit">Save</button>

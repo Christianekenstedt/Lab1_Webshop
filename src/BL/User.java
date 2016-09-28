@@ -9,6 +9,10 @@ public class User {
     //TODO: Role också.
     private ShoppingCart shoppingCart;
 
+    public User(String username){
+        this.username = username;
+    }
+
     public int getId() {
         return id;
     }

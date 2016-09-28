@@ -11,24 +11,24 @@ public class Order {
     private int id;
     private User owner;
     //TODO: Kanske ha status som enum?
-    private String status;
+    private int status;
 
-    protected Order(int id, User owner, String status){
+    protected Order(int id, User owner, int status){
         this.id = id;
         this.owner = owner;
         this.status = status;
     }
 
     public static Order getOrder(int id){
-        return OrderDB.getOrder(id);
+        return OrderDB.getOrderFromDB(id);
     }
 
     public static Vector<Order> getOrders(User owner){
-        return OrderDB.getOrders(owner);
+        return OrderDB.getOrdersFromDB(owner);
     }
 
-    public void postOrder(User owner){
-        OrderDB.addOrder(owner);
+    public static void addOrder(User owner){
+        OrderDB.addOrderToDB(owner);
     }
     public int getId() {
         return id;
@@ -38,7 +38,7 @@ public class Order {
         return owner;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 }

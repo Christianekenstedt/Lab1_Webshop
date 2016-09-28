@@ -1,12 +1,10 @@
 package DAL;
 
-import BL.Item;
 import BL.Order;
 import BL.ShoppingCartItem;
 import BL.User;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -14,18 +12,18 @@ import java.util.Vector;
  */
 public class OrderDB extends Order{
 
-    public OrderDB(int id, User owner, String status){
+    public OrderDB(int id, User owner, int status){
         super(id,owner,status);
     }
-    public static Order getOrder(int id) {
+    public static Order getOrderFromDB(int id) {
         return null;
     }
 
-    public static Vector<Order> getOrders(User owner){
+    public static Vector<Order> getOrdersFromDB(User owner){
         return null;
     }
 
-    public static void addOrder(User owner){
+    public static void addOrderToDB(User owner){
         PreparedStatement orderStmt = null;
         PreparedStatement itemsStmt = null;
 
@@ -47,8 +45,15 @@ public class OrderDB extends Order{
 
             itemsStmt = con.prepareStatement(itemsToOrderQuery);
 
-            for(ShoppingCartItem item : owner.getShoppingCart().getItems()){
+            /*for(ShoppingCartItem item : owner.getShoppingCart().getItems()){
                 itemsStmt.setInt(1,auto_id);
+                itemsStmt.setInt(2,5);
+                itemsStmt.execute();
+            }*/
+
+            for(int i = 0; i < 5; i++){
+                itemsStmt.setInt(1,auto_id);
+                itemsStmt.setInt(2,5);
                 itemsStmt.execute();
             }
             con.commit();
