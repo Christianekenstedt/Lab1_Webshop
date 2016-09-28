@@ -21,7 +21,7 @@ public class OrderDB {
         return null;
     }
 
-    public static void addOrder(User owner) throws SQLException {
+    public static void addOrder(User owner){
         //TODO: post a new order to database, what to include, list of items?
         Connection con = DBManager.getConnection();
         //TODO: Kanske göra så att status sätts by default till Recived (1) istället.
@@ -51,15 +51,23 @@ public class OrderDB {
             // Vill vi ha ResultSet här?
         } catch (SQLException e) {
             e.printStackTrace();
-            if (con != null){
-                System.err.println("Transaction is being rolled back!");
-                con.rollback();
+            try{
+                if (con != null){
+                    System.err.println("Transaction is being rolled back!");
+                    con.rollback();
+                }
+            }catch(SQLException ex){
+                System.err.println(ex.toString());
             }
 
         }finally {
-            if(newOrderQuery != null) orderStmt.close();
-            if (itemsToOrderQuery != null) itemsStmt.close();
-            con.setAutoCommit(true);
+            try{
+                if(newOrderQuery != null) orderStmt.close();
+                if (itemsToOrderQuery != null) itemsStmt.close();
+                con.setAutoCommit(true);
+            }catch (SQLException e){
+                System.err.println(e.getMessage());
+            }
 
         }
 

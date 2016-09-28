@@ -23,7 +23,7 @@ public class Order {
         return OrderDB.getOrder(id);
     }
 
-    public Vector<Order> getOrders(User owner){
+    public static Vector<Order> getOrders(User owner){
         return OrderDB.getOrders(owner);
     }
 
