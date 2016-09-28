@@ -12,7 +12,11 @@ import java.util.Vector;
 /**
  * Created by chris on 2016-09-28.
  */
-public class OrderDB {
+public class OrderDB extends Order{
+
+    public OrderDB(int id, User owner, String status){
+        super(id,owner,status);
+    }
     public static Order getOrder(int id) {
         return null;
     }
@@ -22,13 +26,13 @@ public class OrderDB {
     }
 
     public static void addOrder(User owner){
-        //TODO: post a new order to database, what to include, list of items?
-        Connection con = DBManager.getConnection();
-        //TODO: Kanske göra så att status sätts by default till Recived (1) istället.
-        String newOrderQuery = "INSERT INTO Order (owner,status) VALUES (?)";
-        String itemsToOrderQuery = "INSERT INTO OrderItem (order,item) VALUES (?,?)";
         PreparedStatement orderStmt = null;
         PreparedStatement itemsStmt = null;
+
+        Connection con = DBManager.getConnection();
+        String newOrderQuery = "INSERT INTO Order (owner,status) VALUES (?)";
+        String itemsToOrderQuery = "INSERT INTO OrderItem (order,item) VALUES (?,?)";
+
 
         try {
             int auto_id = -1;
@@ -46,9 +50,8 @@ public class OrderDB {
             for(ShoppingCartItem item : owner.getShoppingCart().getItems()){
                 itemsStmt.setInt(1,auto_id);
                 itemsStmt.execute();
-                con.commit();
             }
-            // Vill vi ha ResultSet här?
+            con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
             try{

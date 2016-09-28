@@ -19,7 +19,7 @@ public class Order {
         this.status = status;
     }
 
-    public Order getOrder(int id){
+    public static Order getOrder(int id){
         return OrderDB.getOrder(id);
     }
 
