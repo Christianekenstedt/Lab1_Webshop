@@ -34,4 +34,8 @@ public class Role {
     public static Collection<Role> getAll(){
         return RoleDB.getAllFromDB();
     }
+
+    public static Role getRole(int id){
+        return RoleDB.getFromDB(id);
+    }
 }

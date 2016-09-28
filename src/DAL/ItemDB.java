@@ -113,6 +113,7 @@ public class ItemDB extends Item {
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setInt(1, id);
             stmt.execute();
+            System.out.println("Item removed.");
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {

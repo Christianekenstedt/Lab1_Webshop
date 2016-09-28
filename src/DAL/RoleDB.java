@@ -15,6 +15,28 @@ public class RoleDB extends Role {
         super(id, name);
     }
 
+    public static Role getFromDB(int id){
+
+        Connection conn = DBManager.getConnection();
+        String query = "SELECT * FROM Role WHERE id = ?";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()){
+                String name = rs.getString("name");
+                return new RoleDB(id, name);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public static Collection<Role> getAllFromDB(){
         Vector<Role> roles = new Vector<>();
         Connection con = DBManager.getConnection();
