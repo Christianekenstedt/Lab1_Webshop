@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1506606329">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="SQL Server (Microsoft) - @lab1webshop.database.windows.net" uuid="71e4012d-2d65-4107-9e11-8a5f5b09205f">
       <driver-ref>sqlserver.ms</driver-ref>
       <configured-by-url>true</configured-by-url>
