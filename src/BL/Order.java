@@ -2,6 +2,7 @@ package BL;
 
 import DAL.OrderDB;
 
+import java.util.Collection;
 import java.util.Vector;
 
 /**
@@ -23,13 +24,22 @@ public class Order {
         return OrderDB.getOrderFromDB(id);
     }
 
-    public static Vector<Order> getOrders(User owner){
+    public static Collection<Order> getOrders(User owner){
         return OrderDB.getOrdersFromDB(owner);
     }
 
     public static void addOrder(User owner){
         OrderDB.addOrderToDB(owner);
     }
+
+    public static void deleteOrder(int id){
+        OrderDB.deleteOrder(id);
+    }
+
+    public static void updateOrder(int id, User owner, int status ){
+        OrderDB.updateOrder(id,owner,status);
+    }
+
     public int getId() {
         return id;
     }

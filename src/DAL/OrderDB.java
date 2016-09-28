@@ -28,9 +28,9 @@ public class OrderDB extends Order{
             stmt = con.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()){
+            if (rs.next()){
                 //TODO: Catch the user.
-                return new OrderDB(rs.getInt("id"),null,rs.getInt("status"));
+                return new OrderDB(rs.getInt("id"),User.getUser(rs.getInt("owner")),rs.getInt("status"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -108,11 +108,11 @@ public class OrderDB extends Order{
             itemsStmt = con.prepareStatement(itemsToOrderQuery);
 
             //TODO: get the shopingcart properly.
-            for(ShoppingCartItem item : owner.getShoppingCart().getItems()){
+            /*for(ShoppingCartItem item : owner.getShoppingCart().getItems()){
                 itemsStmt.setInt(1,auto_id);
                 itemsStmt.setInt(2,5);
                 itemsStmt.execute();
-            }
+            }*/
             con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -152,6 +152,7 @@ public class OrderDB extends Order{
         Connection con = DBManager.getConnection();
 
         String query = "DELETE FROM ShopOrder WHERE id=?";
+        //TODO: Se till att allt sammanhängande tas bort vid en deleteOrder().
         try{
             stmt.setInt(1,id);
             stmt = con.prepareStatement(query);
