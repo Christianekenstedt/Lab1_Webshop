@@ -20,6 +20,6 @@ public class OrderVO {
     public static OrderVO viewOrder(int id){return new OrderVO(Order.getOrder(id));}
 
     public static void postOrder(){
-        Order.addOrder(new User());
+        Order.addOrder(new User("test"));
     }
 }

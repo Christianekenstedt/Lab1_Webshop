@@ -12,7 +12,6 @@
 
   <% ItemVO.postItem("Bildäck", 5, -1);%>
 
-  <% OrderVO.postOrder();%>
   <form action="index.jsp" method="post">
       <input id="name" type="text"/>
       <button type="submit">Save</button>

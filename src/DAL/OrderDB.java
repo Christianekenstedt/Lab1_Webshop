@@ -36,7 +36,8 @@ public class OrderDB extends Order{
             int auto_id = -1;
             con.setAutoCommit(false);
             orderStmt = con.prepareStatement(newOrderQuery, Statement.RETURN_GENERATED_KEYS);
-            orderStmt.setInt(1,owner.getId());
+            //orderStmt.setInt(1,owner.getId());
+            orderStmt.setInt(1,3);
             orderStmt.executeQuery();
 
             ResultSet rs = orderStmt.getGeneratedKeys();
