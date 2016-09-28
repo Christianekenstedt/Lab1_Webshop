@@ -18,8 +18,8 @@ public class Item {
         return ItemDB.getItem(id);
     }
 
-    public static void postItem(String name){
-        ItemDB.postItem(name);
+    public static void postItem(String name, int amount, int category){
+        ItemDB.newItem(name, amount, category);
     }
 
     public String getName() {

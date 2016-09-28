@@ -20,8 +20,8 @@ public class ItemVO {
         return new ItemVO(Item.getItem(id));
     }
 
-    public static void postItem(String name){
-        Item.postItem(name);
+    public static void postItem(String name, int amount, int category){
+        Item.postItem(name, amount, category);
     }
 
     public String getName() {

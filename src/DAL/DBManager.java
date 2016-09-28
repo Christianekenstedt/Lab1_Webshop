@@ -22,12 +22,7 @@ public class DBManager {
 
 
     static{
-        init();
-    }
-
-    public static void init(){
-        System.out.println("Connecting to database.");
-        getConnection();
+        //Do init code here
     }
 
     public static Connection getConnection(){

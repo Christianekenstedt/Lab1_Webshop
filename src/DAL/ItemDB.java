@@ -2,7 +2,7 @@ package DAL;
 
 import BL.Item;
 
-import java.sql.Connection;
+import java.sql.*;
 
 /**
  * Created by Christian on 2016-09-26.
@@ -18,10 +18,27 @@ public class ItemDB extends Item {
         return new ItemDB(id,"Skjorta");
     }
 
-    public static void postItem(String name){
+    /***
+     * TODO: parameters or a full "item" object
+     * @param name
+     */
+    public static void newItem(String name, int amount, int category){
         //TODO: Save item to db.
 
         Connection con = DBManager.getConnection();
-        System.out.println("skapar: " + name);
+
+        String query = "INSERT INTO Item (name, inStock, category) VALUES(?, ?, ?)";
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, name);
+            stmt.setInt(2, amount);
+            stmt.setInt(3, -1);
+            //// TODO: 2016-09-28 : execute 
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
