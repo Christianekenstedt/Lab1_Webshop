@@ -4,6 +4,7 @@
     <data-source source="LOCAL" name="SQL Server (Microsoft) - Webshop@lab1webshop.database.windows.net" uuid="7ebe03cc-8d95-4915-89f3-358439aa95bc">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
       <jdbc-url>jdbc:sqlserver://lab1webshop.database.windows.net:1433;database=Webshop;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;databaseName=Webshop;</jdbc-url>
     </data-source>
