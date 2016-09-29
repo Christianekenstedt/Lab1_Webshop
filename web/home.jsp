@@ -12,6 +12,15 @@
 
 </head>
 <body>
-    <%= request.getParameter("username")%>
+    Welcome
+    <%= session.getAttribute("username")%>
+    !
+
+<form action="Webshop" method="post">
+    <button type="submit" name="operation" value="articlesShow">Show Articles</button><br>
+    <button type="submit" name="operation" value="adminCenter">Administration</button><br><!-- check session variable if allowed -->
+    <button type="submit" name="operation" value="logout">Logout</button><br>
+</form>
+
 </body>
 </html>

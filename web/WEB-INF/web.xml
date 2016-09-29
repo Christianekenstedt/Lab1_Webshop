@@ -5,22 +5,20 @@
          version="3.1">
     <display-name>Webshop</display-name>
     <servlet>
-        <display-name>Login</display-name>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>Controllers.LoginController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/LoginController</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ItemController</servlet-name>
-        <servlet-class>Controllers.ItemController</servlet-class>
+        <servlet-name>WebshopController</servlet-name>
+        <servlet-class>Controllers.WebshopController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ItemController</servlet-name>
-        <url-pattern>/ItemController</url-pattern>
+        <servlet-name>WebshopController</servlet-name>
+        <url-pattern>/Webshop</url-pattern>
     </servlet-mapping>
+
+    <filter>
+        <filter-name>AccessFilter</filter-name>
+        <filter-class>Controllers.AccessFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AccessFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>

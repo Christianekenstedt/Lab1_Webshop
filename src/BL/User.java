@@ -17,6 +17,9 @@ public class User {
         this.username = username;
         this.role = role;
     }
+    public Role getRole(){
+        return this.role;
+    }
 
     public int getId() {
         return id;
@@ -26,13 +29,9 @@ public class User {
         return username;
     }
 
-    public static void authenticate(String username, String password){
+    public static User authenticate(String username, String password){
         User user = UserDB.authenticateInDB(username, password);
-        if(user != null){
-            // success
-        }else{
-            // user does not exist
-        }
+        return user;
     }
 
     public static User getUser(int id){

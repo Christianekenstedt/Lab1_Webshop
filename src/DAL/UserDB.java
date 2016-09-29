@@ -20,10 +20,11 @@ public class UserDB extends User {
     public static UserDB authenticateInDB(String username, String password){
         Connection conn = DBManager.getConnection();
 
-        String query = "SELECT id, username, role FROM User" +
+        String query = "SELECT id, username, role FROM [User]" +
                 " WHERE username = ? AND password = ?";
 
         try {
+
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, username);
             stmt.setString(2, password);
@@ -52,7 +53,7 @@ public class UserDB extends User {
     public static UserDB getUserFromDB(int id){
         Connection conn = DBManager.getConnection();
 
-        String query = "SELECT id, username, role FROM User WHERE" +
+        String query = "SELECT id, username, role FROM [User] WHERE" +
                 " id = ?";
 
         try {
@@ -75,7 +76,7 @@ public class UserDB extends User {
 
         Connection conn = DBManager.getConnection();
 
-        String query = "SELECT id, username, role FROM User";
+        String query = "SELECT id, username, role FROM [User]";
 
         try {
             Statement stmt = conn.createStatement();
@@ -88,6 +89,12 @@ public class UserDB extends User {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally{
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return users;
@@ -96,7 +103,7 @@ public class UserDB extends User {
     public static void addUserToDB(String username, String password, Role role){
         Connection conn = DBManager.getConnection();
 
-        String query = "INSERT INTO User (username, password, role) VALUES(?,?,?)";
+        String query = "INSERT INTO [User] (username, password, role) VALUES(?,?,?)";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -104,6 +111,7 @@ public class UserDB extends User {
             stmt.setString(2, password);
             stmt.setInt(3, role.getId());
             stmt.execute();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }finally{
@@ -119,7 +127,7 @@ public class UserDB extends User {
     public static void updateUserInDB(int id, String username, String oldPassword, String password, Role role){
         Connection conn = DBManager.getConnection();
 
-        String query = "UPDATE User SET username = ?, password = ?, role = ? WHERE" +
+        String query = "UPDATE [User] SET username = ?, password = ?, role = ? WHERE" +
                 " id = ? AND password = ?";
 
         try {
@@ -144,7 +152,7 @@ public class UserDB extends User {
     public static void deleteUserFromDB(int id){
         Connection conn = DBManager.getConnection();
 
-        String query = "DELETE FROM User WHERE" +
+        String query = "DELETE FROM [User] WHERE" +
                 " id = ?";
 
         try {
