@@ -107,7 +107,7 @@ public class OrderDB extends Order{
 
             itemsStmt = con.prepareStatement(itemsToOrderQuery);
 
-            //TODO: get the shopingcart properly.
+            //TODO: get the shoppingcart properly.
             /*for(ShoppingCartItem item : owner.getShoppingCart().getItems()){
                 itemsStmt.setInt(1,auto_id);
                 itemsStmt.setInt(2,5);
