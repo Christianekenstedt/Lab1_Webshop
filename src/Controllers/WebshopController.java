@@ -1,5 +1,6 @@
 package Controllers;
 
+import VO.OrderVO;
 import VO.UserVO;
 
 import javax.servlet.ServletException;
@@ -23,6 +24,16 @@ public class WebshopController extends HttpServlet {
                 case "logout":
                     operationLogout(request, response);
                     break;
+                case "myOrders":
+                    request.getRequestDispatcher("/orders.jsp").forward(request, response);
+                    break;
+                case "manageOrder":
+                    if (request.getParameter("packOrder") != null){
+                        manageOrder(request,response);
+                    }else{
+                        request.getRequestDispatcher("/viewOrder.jsp").forward(request,response);
+                    }
+
                 default:
                     response.sendError(HttpServletResponse.SC_NOT_FOUND);
                     break;
@@ -57,5 +68,10 @@ public class WebshopController extends HttpServlet {
     private void operationLogout (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         request.getSession().setAttribute("username", null);
         request.getRequestDispatcher("/login.jsp").forward(request, response);
+    }
+
+    private void manageOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        OrderVO.updateOrder(Integer.parseInt(request.getParameter("packOrder")));
+        request.getRequestDispatcher("/orders.jsp").forward(request,response);
     }
 }

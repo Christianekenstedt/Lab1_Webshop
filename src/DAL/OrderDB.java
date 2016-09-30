@@ -24,8 +24,9 @@ public class OrderDB extends Order{
         String query = "SELECT * FROM ShopOrder WHERE id = ?";
 
         try {
-            stmt.setInt(1,id);
             stmt = con.prepareStatement(query);
+            stmt.setInt(1,id);
+
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()){
@@ -50,6 +51,40 @@ public class OrderDB extends Order{
         return null;
     }
 
+    public static Vector<Order> getAll(){
+        PreparedStatement stmt = null;
+        Vector<Order> orders = new Vector<>();
+        Connection con = DBManager.getConnection();
+
+        String query = "SELECT * FROM ShopOrder";
+
+        try{
+            stmt = con.prepareStatement(query);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                orders.add(new OrderDB(rs.getInt("id"),UserDB.getUser(rs.getInt("owner")),rs.getInt("status")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if (stmt != null) try {
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            if(con != null) try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+        return orders;
+    }
+
     public static Vector<Order> getOrdersFromDB(User owner){
         PreparedStatement stmt = null;
         Vector<Order> orders = new Vector<>();
@@ -58,8 +93,9 @@ public class OrderDB extends Order{
         String query = "SELECT * FROM ShopOrder WHERE owner = ?";
 
         try{
-            stmt.setInt(1,owner.getId());
             stmt = con.prepareStatement(query);
+            stmt.setInt(1,owner.getId());
+
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
                 //TODO: Kanske verifiera användaren och inte anta att det är den användaren som skickades in.
@@ -107,12 +143,11 @@ public class OrderDB extends Order{
 
             itemsStmt = con.prepareStatement(itemsToOrderQuery);
 
-            //TODO: get the shoppingcart properly.
-            /*for(ShoppingCartItem item : owner.getShoppingCart().getItems()){
+            for(ShoppingCartItem item : ShoppingCartDB.getCartByOwner(owner).getItems()){
                 itemsStmt.setInt(1,auto_id);
-                itemsStmt.setInt(2,5);
+                itemsStmt.setInt(2,item.getId());
                 itemsStmt.execute();
-            }*/
+            }
             con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -154,8 +189,9 @@ public class OrderDB extends Order{
         String query = "DELETE FROM ShopOrder WHERE id=?";
         //TODO: Se till att allt sammanhängande tas bort vid en deleteOrder().
         try{
-            stmt.setInt(1,id);
             stmt = con.prepareStatement(query);
+            stmt.setInt(1,id);
+
             stmt.execute();
 
         } catch (SQLException e) {
@@ -182,10 +218,11 @@ public class OrderDB extends Order{
         String query = "UPDATE ShopOrder set owner = ?, status = ? WHERE id=?";
 
         try {
+            stmt = con.prepareStatement(query);
             stmt.setInt(1,owner.getId());
             stmt.setInt(2,status);
             stmt.setInt(3,id);
-            stmt = con.prepareStatement(query);
+
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

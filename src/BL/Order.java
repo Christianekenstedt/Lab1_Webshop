@@ -1,6 +1,7 @@
 package BL;
 
 import DAL.OrderDB;
+import DAL.UserDB;
 
 import java.util.Collection;
 import java.util.Vector;
@@ -24,8 +25,9 @@ public class Order {
         return OrderDB.getOrderFromDB(id);
     }
 
-    public static Collection<Order> getOrders(User owner){
-        return OrderDB.getOrdersFromDB(owner);
+    public static Collection<Order> getOrders(int id){
+
+        return OrderDB.getOrdersFromDB(UserDB.getUserFromDB(id));
     }
 
     public static void addOrder(User owner){
@@ -38,6 +40,10 @@ public class Order {
 
     public static void updateOrder(int id, User owner, int status ){
         OrderDB.updateOrder(id,owner,status);
+    }
+
+    public static Collection<Order> getAllOrders(){
+        return OrderDB.getAll();
     }
 
     public int getId() {

@@ -28,6 +28,7 @@
         <% if(user.getRole().getName().equals("Admin")){ %>
             <button type="submit" name="operation" value="adminCenter">Administration</button><br><!-- check session variable if allowed -->
         <% }%>
+        <button type="submit" name="operation" value="myOrders">My Orders</button><br>
         <button type="submit" name="operation" value="logout">Logout</button><br>
     </form>
 
