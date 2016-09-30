@@ -21,8 +21,8 @@ public class OrderVO {
 
     public static OrderVO viewOrder(int id){return new OrderVO(Order.getOrder(id));}
 
-    public static void postOrder(){
-        //Order.addOrder(new User("test"));
+    public static void postOrder(int userId){
+        Order.addOrder(User.getUser(userId));
     }
 
     public static Vector<OrderVO> viewOrders(int id){

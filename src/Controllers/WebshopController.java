@@ -105,5 +105,11 @@ public class WebshopController extends HttpServlet {
         //// TODO: 2016-09-30  
         
     }
+
+    private void operationCheckout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        OrderVO.postOrder(Integer.parseInt(request.getSession().getAttribute("userId").toString()));
+        request.setAttribute("orderCreated",true);
+        request.getRequestDispatcher("/orders.jsp").forward(request,response);
+    }
     
 }
