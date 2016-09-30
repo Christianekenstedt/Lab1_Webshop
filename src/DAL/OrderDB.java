@@ -136,7 +136,7 @@ public class OrderDB extends Order{
 
             for(ShoppingCartItem item : ShoppingCartDB.getCartByOwner(owner).getItems()){
                 itemsStmt.setInt(1,auto_id);
-                itemsStmt.setInt(2,item.getId());
+                itemsStmt.setInt(2,item.getItem().getId());
                 itemsStmt.execute();
             }
             con.commit();
