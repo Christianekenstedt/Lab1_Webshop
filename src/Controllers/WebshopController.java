@@ -47,6 +47,12 @@ public class WebshopController extends HttpServlet {
                 case "viewCart":
                     operationViewCart(request, response);
                     break;
+                case "goHome":
+                    operationGoHome(request, response);
+                    break;
+                case "cartRemoveItem":
+                    operationRemoveFromCart(request, response);
+                    break;
                 default:
                     response.sendError(HttpServletResponse.SC_NOT_FOUND);
                     break;
@@ -102,8 +108,17 @@ public class WebshopController extends HttpServlet {
     }
 
     private void operationViewCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        //// TODO: 2016-09-30  
-        
+        request.getRequestDispatcher("/cart.jsp").forward(request, response);
+    }
+
+    private void operationGoHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        request.getRequestDispatcher("/home.jsp").forward(request, response);
+    }
+
+    private void operationRemoveFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        int removeItemId = Integer.parseInt(request.getParameter("removeItemId").toString());
+        ShoppingCartVO.removeItemFromCart(removeItemId);
+        request.getRequestDispatcher("/cart.jsp").forward(request, response);
     }
     
 }

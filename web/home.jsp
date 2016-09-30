@@ -23,33 +23,34 @@
 
 </head>
 <body style="font-family:Verdana;">
-<div id="wrapper" style="width:800px; margin:auto;">
-    Welcome
-    <%= user.getUsername()%>
-    !
-
-    <form action="Webshop" method="post" style="width:100px;">
-        <% if(user.getRole().getName().equals("Admin")){ %>
-            <button style="width:100px;" type="submit" name="operation" value="adminCenter">Administration</button><br><!-- check session variable if allowed -->
-        <% }%>
-
-        <button style="width:100px;" type="submit" name="operation" value="myOrders">Orders</button><br>
-
-        <button style="width:100px;" type="submit" name="operation" value="viewCart">Shopping Cart</button><br>
-
-        <button style="width:100px;" type="submit" name="operation" value="logout">Logout</button><br>
-    </form>
-
+<div id="wrapper" style="width:800px; margin:auto;position:relative;top:100px;">
     <div id="categories" style="float:left;width:200px;height:800px;">
-        <form action="Webshop" method="post">
-            <input type="hidden" name="operation" value="selectCategory">
-            Categories<br>
-            <% for (ItemCategoryVO category: ItemCategoryVO.getAllCategories()) {%>
-                <button style="width:100px;" type="submit" name="selectedCategory" value="<%=category.getId()%>"><%=category.getName()%></button><br>
-            <%}%>
-        </form>
-    </div>
+        Welcome
+        <%= user.getUsername()%>
+        !
 
+        <form action="Webshop" method="post" style="width:100px;">
+            <% if(user.getRole().getName().equals("Admin")){ %>
+                <button style="width:100px;" type="submit" name="operation" value="adminCenter">Administration</button><br><!-- check session variable if allowed -->
+            <% }%>
+
+            <button style="width:100px;" type="submit" name="operation" value="myOrders">Orders</button><br>
+
+            <button style="width:100px;" type="submit" name="operation" value="viewCart">Shopping Cart</button><br>
+
+            <button style="width:100px;" type="submit" name="operation" value="logout">Logout</button><br>
+        </form>
+
+        <div>
+            <form action="Webshop" method="post">
+                <input type="hidden" name="operation" value="selectCategory">
+                Categories<br>
+                <% for (ItemCategoryVO category: ItemCategoryVO.getAllCategories()) {%>
+                    <button style="width:100px;" type="submit" name="selectedCategory" value="<%=category.getId()%>"><%=category.getName()%></button><br>
+                <%}%>
+            </form>
+        </div>
+    </div>
     <div id="items" style="height:800px;">
         <form action="Webshop" method="post">
             <input type="hidden" name="operation" value="buyItem">

@@ -21,19 +21,9 @@ public class AccessFilter implements Filter {
 
 
 
-
         if(session.getAttribute("username") == null){
-            if(!httpReq.getRequestURI().equals("/login.jsp")){
-                System.out.println("User is not authorized.");
-                if(!resp.isCommitted())
-                    httpResp.sendRedirect("/login.jsp");
-            }
-        }
-        else{
-            System.out.println("User is authorized.");
             if(!resp.isCommitted())
-                httpReq.getRequestDispatcher("/home.jsp").forward(httpReq, httpResp);
-
+                httpReq.getRequestDispatcher("/login.jsp").forward(httpReq, httpResp);
         }
 
     }

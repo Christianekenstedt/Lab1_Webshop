@@ -15,7 +15,7 @@ public class ItemVO {
     private int amount;
     private ItemCategoryVO category;
 
-    private ItemVO(Item item){
+    public ItemVO(Item item){
         this.id = item.getId();
         this.name = item.getName();
         this.amount = item.getAmount();

@@ -80,15 +80,14 @@ public class ShoppingCartDB extends ShoppingCart {
 
     }
 
-    public static void removeItemFromCartInDB(int cartId, int itemId){
+    public static void removeItemFromCartInDB(int cartItemId){
         Connection conn = DBManager.getConnection();
 
-        String query = "DELETE FROM ShoppingCartItem WHERE cart = ? AND item = ?";
+        String query = "DELETE FROM ShoppingCartItem WHERE id = ?";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1, cartId);
-            stmt.setInt(2, itemId);
+            stmt.setInt(1, cartItemId);
             stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
