@@ -7,18 +7,5 @@
   </head>
   <body>
 
-
-  <% for(ItemVO item : ItemVO.getAll()){
-    out.print(item.getName() + " " + item.getId() + "<br>");
-  }%>
-
-
-  <%= ItemVO.get(15).getName()%>
-
-  <form action="index.jsp" method="post">
-      <input id="name" type="text"/>
-      <button type="submit">Save</button>
-  </form>
-
   </body>
 </html>

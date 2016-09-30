@@ -75,6 +75,9 @@ public class WebshopController extends HttpServlet {
                 case "deleteCategory":
                     operationDeleteCategory(request,response);
                     break;
+                case "viewUsers":
+                    request.getRequestDispatcher("/view-users.jsp").forward(request,response);
+                    break;
                 default:
                     response.sendError(HttpServletResponse.SC_NOT_FOUND);
                     break;

@@ -14,7 +14,7 @@
 
 <form>
     <button type="submit" name="operation" value="manageItems">Manage items and categories</button>
-    <button type="submit" name="operation" value="manageUsers">Manage users</button>
+    <button type="submit" name="operation" value="viewUsers">Manage users</button>
 
 </form>
 

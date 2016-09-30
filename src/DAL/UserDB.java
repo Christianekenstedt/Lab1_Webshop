@@ -82,7 +82,8 @@ public class UserDB extends User {
             while(rs.next()){
                 int id = rs.getInt("id");
                 String username = rs.getString("username");
-                Role role = Role.getRole(id);
+                int roleId = rs.getInt("role");
+                Role role = Role.getRole(roleId);
                 users.add(new UserDB(id, username, role));
             }
         } catch (SQLException e) {
