@@ -23,9 +23,6 @@ public class WebshopController extends HttpServlet {
                 case "logout":
                     operationLogout(request, response);
                     break;
-                case "articlesShow":
-                    request.getRequestDispatcher("/articles.jsp").forward(request, response);
-                    break;
                 default:
                     response.sendError(HttpServletResponse.SC_NOT_FOUND);
                     break;
@@ -50,6 +47,7 @@ public class WebshopController extends HttpServlet {
         UserVO user = UserVO.authenticate(request.getParameter("username"), request.getParameter("password"));
         if(user != null){
             request.getSession().setAttribute("username", user.getUsername());
+            request.getSession().setAttribute("userId", user.getId());
             request.getRequestDispatcher("/home.jsp").forward(request, response);
         }else{
             request.getRequestDispatcher("/login-error.jsp").forward(request, response);

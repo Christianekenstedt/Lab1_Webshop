@@ -12,7 +12,8 @@ public class Role {
     private String name;
 
     protected Role(int id, String name){
-
+        this.id = id;
+        this.name = name;
     }
 
     public int getId() {

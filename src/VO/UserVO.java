@@ -25,6 +25,14 @@ public class UserVO {
         }
     }
 
+    public static UserVO getUserByID(int id){
+        User user = User.getUser(id);
+        if(user != null)
+            return new UserVO(user);
+        else
+            return null;
+    }
+
     public int getId() {
         return id;
     }
