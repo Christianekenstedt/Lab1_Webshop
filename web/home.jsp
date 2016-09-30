@@ -20,7 +20,23 @@
 <html>
 <head>
     <title>Home</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: auto;
+        }
 
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
 </head>
 <body style="font-family:Verdana;">
 <div id="wrapper" style="width:800px; margin:auto;">
