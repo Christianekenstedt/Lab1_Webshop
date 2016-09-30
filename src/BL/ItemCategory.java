@@ -1,5 +1,7 @@
 package BL;
 
+import DAL.ItemCategoryDB;
+
 import java.util.Collection;
 
 /**
@@ -7,26 +9,36 @@ import java.util.Collection;
  */
 public class ItemCategory {
     private int id;
-    private ItemCategory parent;
+    private int parentId;
+    private String name;
 
-    protected ItemCategory(int id, ItemCategory parent){
+    protected ItemCategory(int id, int parentId, String name){
         this.id = id;
-        this.parent = parent;
+        this.parentId = parentId;
+        this.name = name;
     }
 
     public int getId(){
         return id;
     }
 
-    public ItemCategory getParent(){
-        return parent;
+    public int getParentId(){
+        return parentId;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public static ItemCategory getCategoryByID(int id){
+        return ItemCategoryDB.getCategoryByIdFromDB(id);
     }
 
     public static Collection<ItemCategory> getAllCategories(){
-        return null;
+        return ItemCategoryDB.getAllCategoriesFromDB();
     }
 
-    public static void addCategory(int parentId){
-        //// TODO: 2016-09-30
+    public static void addCategory(int parentId, String name){
+        ItemCategoryDB.addItemCategoryToDB(name, parentId);
     }
 }

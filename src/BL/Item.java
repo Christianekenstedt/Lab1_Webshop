@@ -18,6 +18,7 @@ public abstract class Item {
         this.name=name;
         this.id=id;
         this.amount = amount;
+        this.category = category;
     }
 
     public static Collection<Item> getAll(){

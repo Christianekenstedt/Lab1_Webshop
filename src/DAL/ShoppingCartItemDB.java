@@ -41,11 +41,7 @@ public class ShoppingCartItemDB extends ShoppingCartItem {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(conn);
         }
 
         return items;

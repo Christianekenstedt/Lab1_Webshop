@@ -2,6 +2,7 @@ package VO;
 
 import BL.*;
 
+import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -12,11 +13,14 @@ public class ItemVO {
     private String name;
     private int id;
     private int amount;
+    private ItemCategoryVO category;
 
     private ItemVO(Item item){
         this.id = item.getId();
         this.name = item.getName();
         this.amount = item.getAmount();
+        this.category = new ItemCategoryVO(item.getCategory());
+
     }
 
     public static ItemVO get(int id){
@@ -31,6 +35,25 @@ public class ItemVO {
         return items;
     }
 
+    public static Collection<ItemVO> getItemsByCategory(ItemCategoryVO category){
+        if(category == null)
+            return getAll();
+
+        Vector<ItemVO> toShow = new Vector<>();
+
+        for(ItemVO item: getAll()){
+            if(item.getCategory() != null){
+                if(item.getCategory().getId() == category.getId()){
+                    toShow.add(item);
+                }
+            }
+        }
+        return toShow;
+    }
+
+    public ItemCategoryVO getCategory(){
+        return this.category;
+    }
     public String getName() {
         return name;
     }

@@ -41,11 +41,7 @@ public class OrderDB extends Order{
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            if (con != null) try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(con);
         }
         return null;
     }
@@ -74,12 +70,7 @@ public class OrderDB extends Order{
                 e.printStackTrace();
             }
 
-            if(con != null) try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
+            DBManager.returnConnection(con);
 
         }
         return orders;
@@ -166,11 +157,7 @@ public class OrderDB extends Order{
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            if (con != null) try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(con);
         }
     }
 
@@ -195,11 +182,7 @@ public class OrderDB extends Order{
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            if (con != null) try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(con);
         }
     }
 }

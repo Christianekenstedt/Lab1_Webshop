@@ -40,11 +40,7 @@ public class UserDB extends User {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(conn);
         }
 
         return null;
@@ -67,6 +63,8 @@ public class UserDB extends User {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            DBManager.returnConnection(conn);
         }
         return null;
     }
@@ -90,11 +88,7 @@ public class UserDB extends User {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally{
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(conn);
         }
 
         return users;
@@ -115,11 +109,7 @@ public class UserDB extends User {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally{
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(conn);
         }
 
     }
@@ -141,11 +131,7 @@ public class UserDB extends User {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally{
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(conn);
         }
     }
 
@@ -165,15 +151,8 @@ public class UserDB extends User {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(conn);
         }
-
-
-
     }
 }
 

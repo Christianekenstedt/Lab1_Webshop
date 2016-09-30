@@ -10,14 +10,14 @@
 <head>
     <title>Login</title>
 </head>
-<body>
-
+<body style="font-family: Verdana;">
+<div id="wrapper" style="width:400px;margin:auto;top:300px;position:relative;text-align:center;">
     <form action="Webshop" method="post">
         <input type="hidden" name="operation" value="login">
-        Username:<input type="text" name="username"> <br>
-        Password:<input type="password" name="password"> <br>
-        <input type="submit" value="Login">
+        Username<br><input type="text" name="username"> <br><br>
+        Password<br><input type="password" name="password"> <br>
+        <input type="submit" value="Login" style="align-content:center;">
     </form>
-
+</div>
 </body>
 </html>

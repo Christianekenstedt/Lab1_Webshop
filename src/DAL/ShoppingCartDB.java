@@ -32,11 +32,7 @@ public class ShoppingCartDB extends ShoppingCart {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(conn);
         }
 
     }
@@ -59,11 +55,7 @@ public class ShoppingCartDB extends ShoppingCart {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(conn);
         }
         return null;
     }
@@ -83,11 +75,7 @@ public class ShoppingCartDB extends ShoppingCart {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(conn);
         }
 
     }
@@ -105,11 +93,7 @@ public class ShoppingCartDB extends ShoppingCart {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(conn);
         }
     }
 }

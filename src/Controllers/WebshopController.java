@@ -1,5 +1,7 @@
 package Controllers;
 
+import VO.ItemCategoryVO;
+import VO.ShoppingCartVO;
 import VO.UserVO;
 
 import javax.servlet.ServletException;
@@ -22,6 +24,12 @@ public class WebshopController extends HttpServlet {
                     break;
                 case "logout":
                     operationLogout(request, response);
+                    break;
+                case "selectCategory":
+                    operationSelectCategory(request, response);
+                    break;
+                case "buyItem":
+                    operationBuyItem(request, response);
                     break;
                 default:
                     response.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -57,5 +65,18 @@ public class WebshopController extends HttpServlet {
     private void operationLogout (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         request.getSession().setAttribute("username", null);
         request.getRequestDispatcher("/login.jsp").forward(request, response);
+    }
+
+    private void operationSelectCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        request.setAttribute("selectedCategory", request.getParameter("selectedCategory"));
+        request.getRequestDispatcher("/home.jsp").forward(request, response);
+    }
+
+    private void operationBuyItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        int userId = Integer.parseInt(request.getSession().getAttribute("userId").toString());
+        int itemId = Integer.parseInt(request.getParameter("buyItemId"));
+        int amount = Integer.parseInt(request.getParameter("buyAmount"));
+        ShoppingCartVO.addItemToCart(userId, itemId, amount);
+        request.getRequestDispatcher("/home.jsp").forward(request, response);
     }
 }

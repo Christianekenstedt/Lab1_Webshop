@@ -1,5 +1,6 @@
 package VO;
 
+import BL.ShoppingCart;
 import BL.ShoppingCartItem;
 
 import java.util.Collection;
@@ -14,5 +15,9 @@ public class ShoppingCartVO {
 
     private ShoppingCartVO(Collection<ShoppingCartItemVO> items, int id){
 
+    }
+
+    public static void addItemToCart(int userId, int itemId, int amount){
+        ShoppingCart.addItemToCart(userId, itemId, amount);
     }
 }

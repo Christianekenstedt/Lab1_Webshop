@@ -32,6 +32,8 @@ public class RoleDB extends Role {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            DBManager.returnConnection(conn);
         }
 
         return null;
@@ -54,11 +56,7 @@ public class RoleDB extends Role {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(con);
         }
 
         return roles;

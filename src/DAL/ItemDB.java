@@ -27,18 +27,14 @@ public class ItemDB extends Item {
             while(rs.next()){
                 String name = rs.getString("name");
                 int amount = rs.getInt("inStock");
-                //// TODO: 2016-09-28 itemcategory
-                return new ItemDB(id, name, amount, null);
+                ItemCategory cat = ItemCategory.getCategoryByID(rs.getInt("category"));
+                return new ItemDB(id, name, amount, cat);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(con);
         }
 
         return null;
@@ -59,17 +55,13 @@ public class ItemDB extends Item {
                 int id = rs.getInt("id");
                 int amount = rs.getInt("inStock");
                 String name = rs.getString("name");
-                items.add(new ItemDB(id, name, amount, null));
-                //TODO: get category
+                ItemCategory cat = ItemCategory.getCategoryByID(rs.getInt("category"));
+                items.add(new ItemDB(id, name, amount, cat));
             }
         }catch(SQLException e){
             e.printStackTrace();
         }finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(con);
         }
 
         return items;
@@ -95,12 +87,7 @@ public class ItemDB extends Item {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            try {
-                if(con!=null)
-                    con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(con);
         }
     }
 
@@ -141,11 +128,7 @@ public class ItemDB extends Item {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBManager.returnConnection(con);
         }
     }
 }

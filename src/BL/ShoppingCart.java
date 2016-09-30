@@ -1,5 +1,7 @@
 package BL;
 
+import DAL.ShoppingCartDB;
+
 import java.util.Collection;
 import java.util.Vector;
 
@@ -19,6 +21,16 @@ public class ShoppingCart {
 
     public Collection<ShoppingCartItem> getItems() {
         return items;
+    }
+
+    public static void addItemToCart(int userId, int itemId, int amount){
+        User user = User.getUser(userId);
+        ShoppingCart cart = ShoppingCartDB.getCartByOwner(user);
+        if(cart == null){
+            ShoppingCartDB.addCartToDB(user);
+            cart = ShoppingCartDB.getCartByOwner(user);
+        }
+        ShoppingCartDB.addItemToCartInDB(cart.getId(), itemId, amount);
     }
 
     public User getOwner() {
