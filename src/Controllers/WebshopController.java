@@ -44,6 +44,9 @@ public class WebshopController extends HttpServlet {
                 case "buyItem":
                     operationBuyItem(request, response);
                     break;
+                case "viewCart":
+                    operationViewCart(request, response);
+                    break;
                 default:
                     response.sendError(HttpServletResponse.SC_NOT_FOUND);
                     break;
@@ -97,4 +100,10 @@ public class WebshopController extends HttpServlet {
         OrderVO.updateOrder(Integer.parseInt(request.getParameter("pOrder")));
         request.getRequestDispatcher("/orders.jsp").forward(request,response);
     }
+
+    private void operationViewCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        //// TODO: 2016-09-30  
+        
+    }
+    
 }

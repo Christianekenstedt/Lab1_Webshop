@@ -22,7 +22,7 @@
     <title>Home</title>
 
 </head>
-<body>
+<body style="font-family:Verdana;">
 <div id="wrapper" style="width:800px; margin:auto;">
     Welcome
     <%= user.getUsername()%>
@@ -32,12 +32,18 @@
         <% if(user.getRole().getName().equals("Admin")){ %>
             <button style="width:100px;" type="submit" name="operation" value="adminCenter">Administration</button><br><!-- check session variable if allowed -->
         <% }%>
+
+        <button style="width:100px;" type="submit" name="operation" value="myOrders">Orders</button><br>
+
+        <button style="width:100px;" type="submit" name="operation" value="viewCart">Shopping Cart</button><br>
+
         <button style="width:100px;" type="submit" name="operation" value="logout">Logout</button><br>
     </form>
 
     <div id="categories" style="float:left;width:200px;height:800px;">
         <form action="Webshop" method="post">
             <input type="hidden" name="operation" value="selectCategory">
+            Categories<br>
             <% for (ItemCategoryVO category: ItemCategoryVO.getAllCategories()) {%>
                 <button style="width:100px;" type="submit" name="selectedCategory" value="<%=category.getId()%>"><%=category.getName()%></button><br>
             <%}%>
@@ -68,7 +74,7 @@
                         <%=item.getAmount()%>
                     </td>
                     <td>
-                        <input type="text" name="buyAmount">
+                        <input type="text" name="buyAmount" value="1">
                     </td>
                     <td>
                         <button type="submit" name="buyItemId" value="<%=item.getId()%>">Buy</button>
