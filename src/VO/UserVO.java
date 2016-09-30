@@ -1,6 +1,7 @@
 package VO;
 
 import BL.User;
+import DAL.UserDB;
 
 /**
  * Created by Anton on 2016-09-29.
@@ -31,6 +32,10 @@ public class UserVO {
             return new UserVO(user);
         else
             return null;
+    }
+
+    public static void addUser(String username, String password, int roleId){
+        User.addUser(username, password, roleId);
     }
 
     public int getId() {

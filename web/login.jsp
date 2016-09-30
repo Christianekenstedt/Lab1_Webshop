@@ -18,6 +18,9 @@
         Password<br><input type="password" name="password"> <br>
         <input type="submit" value="Login" style="align-content:center;">
     </form>
+    <form action="Webshop" method="post">
+        <input type="submit" name="operation" value="goSignup">
+    </form>
 </div>
 </body>
 </html>

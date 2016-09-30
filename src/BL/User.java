@@ -17,6 +17,7 @@ public class User {
         this.username = username;
         this.role = role;
     }
+
     public Role getRole(){
         return this.role;
     }
@@ -42,8 +43,8 @@ public class User {
         return UserDB.getAllUsersFromDB();
     }
 
-    public static void addUser(String username, String password, Role role){
-        UserDB.addUserToDB(username, password, role);
+    public static void addUser(String username, String password, int roleId){
+        UserDB.addUserToDB(username, password, roleId);
     }
 
     public static void updateUser(int id, String username, String oldPassword, String newPassword, Role role){

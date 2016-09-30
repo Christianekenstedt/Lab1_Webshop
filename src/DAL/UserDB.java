@@ -94,7 +94,7 @@ public class UserDB extends User {
         return users;
     }
 
-    public static void addUserToDB(String username, String password, Role role){
+    public static void addUserToDB(String username, String password, int roleId){
         Connection conn = DBManager.getConnection();
 
         String query = "INSERT INTO [User] (username, password, role) VALUES(?,?,?)";
@@ -103,7 +103,7 @@ public class UserDB extends User {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, username);
             stmt.setString(2, password);
-            stmt.setInt(3, role.getId());
+            stmt.setInt(3, roleId);
             stmt.execute();
 
         } catch (SQLException e) {

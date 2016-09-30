@@ -53,6 +53,12 @@ public class WebshopController extends HttpServlet {
                 case "cartRemoveItem":
                     operationRemoveFromCart(request, response);
                     break;
+                case "signup":
+                    operationSignup(request, response);
+                    break;
+                case "goSignup":
+                    request.getRequestDispatcher("/signup.jsp").forward(request,response);
+                    break;
                 default:
                     response.sendError(HttpServletResponse.SC_NOT_FOUND);
                     break;
@@ -119,6 +125,20 @@ public class WebshopController extends HttpServlet {
         int removeItemId = Integer.parseInt(request.getParameter("removeItemId").toString());
         ShoppingCartVO.removeItemFromCart(removeItemId);
         request.getRequestDispatcher("/cart.jsp").forward(request, response);
+    }
+
+    private void operationSignup(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String username = request.getParameter("username");
+        String password1 = request.getParameter("password1");
+        String password2 = request.getParameter("password2");
+        int roleId = 1;
+        if(password1.equals(password2)){
+            UserVO.addUser(username, password1, roleId);
+            request.getRequestDispatcher("/home.jsp").forward(request, response);
+        }
+        else{
+            request.getRequestDispatcher("/signup.jsp").forward(request, response);
+        }
     }
     
 }
