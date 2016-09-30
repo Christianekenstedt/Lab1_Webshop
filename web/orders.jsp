@@ -38,7 +38,6 @@
       <h1>My orders</h1>
     <%}%>
 
-
 <form action="Webshop" method="post">
     <input type="hidden" name="operation" value="manageOrder">
 
@@ -58,7 +57,8 @@
                 <%out.print(order.getStatus()); %>
             </td>
             <td>
-                <button type="submit" name="packOrder" value="<%=order.getId()%>">Pack</button>
+                <button type="submit" name="orderId" value="<%=order.getId()%>">View</button>
+
             </td>
         </tr>
 

@@ -1,6 +1,7 @@
 <%@ page import="VO.ItemVO" %>
 <%@ page import="VO.OrderItemVO" %>
-<%@ page import="VO.OrderVO" %><%--
+<%@ page import="VO.OrderVO" %>
+<%@ page import="VO.UserVO" %><%--
   Created by IntelliJ IDEA.
   User: chris
   Date: 2016-09-30
@@ -8,6 +9,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% OrderVO order = OrderVO.viewOrder(Integer.parseInt(request.getParameter("orderId")));%>
+<% UserVO user = UserVO.getUserByID(Integer.parseInt(session.getAttribute("userId").toString()));%>
 <html>
 <head>
     <title>Order</title>
@@ -32,8 +35,9 @@
 <body>
 <div style="margin: auto"align="center">
     <h1>Order requested: <%=request.getParameter("orderId")%></h1>
-    <h3>Order status: <%=OrderVO.viewOrder(Integer.parseInt(request.getParameter("orderId"))).getStatus()%></h3>
+    <h3>Order status: <%=order.getStatus()%></h3>
     <form action="Webshop" method="post">
+        <input type="hidden" name="operation" value="packOrder">
         <table>
             <tr>
                 <th>Item id</th>
@@ -54,6 +58,9 @@
             </tr>
             <%}%>
         </table>
+        <% if(user.getRole().getName().equals("Personnel")){ %>
+            <button type="submit" name="pOrder" value="<%=order.getId()%>">Pack</button>
+        <%}%>
     </form>
 </div>
 </body>

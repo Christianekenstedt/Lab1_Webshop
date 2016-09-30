@@ -28,12 +28,14 @@ public class WebshopController extends HttpServlet {
                     request.getRequestDispatcher("/orders.jsp").forward(request, response);
                     break;
                 case "manageOrder":
-                    if (request.getParameter("packOrder") != null){
-                        manageOrder(request,response);
-                    }else{
                         request.getRequestDispatcher("/viewOrder.jsp").forward(request,response);
-                    }
+                    break;
+                case "packOrder":
+                        manageOrder(request,response);
+                    break;
+                case "checkOut":
 
+                    break;
                 default:
                     response.sendError(HttpServletResponse.SC_NOT_FOUND);
                     break;
@@ -43,7 +45,7 @@ public class WebshopController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request,response);
     }
 
 
@@ -71,7 +73,7 @@ public class WebshopController extends HttpServlet {
     }
 
     private void manageOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        OrderVO.updateOrder(Integer.parseInt(request.getParameter("packOrder")));
+        OrderVO.updateOrder(Integer.parseInt(request.getParameter("pOrder")));
         request.getRequestDispatcher("/orders.jsp").forward(request,response);
     }
 }
