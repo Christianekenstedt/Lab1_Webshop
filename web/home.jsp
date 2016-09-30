@@ -46,14 +46,13 @@
 
     <form action="Webshop" method="post" style="width:100px;">
         <% if(user.getRole().getName().equals("Admin")){ %>
-            <button style="width:100px;" type="submit" name="operation" value="adminCenter">Administration</button><br><!-- check session variable if allowed -->
+            <button style="width:100px;" type="submit" name="operation" value="adminCenter">Administration</button><!-- check session variable if allowed -->
         <% }%>
 
-        <button style="width:100px;" type="submit" name="operation" value="myOrders">Orders</button><br>
-
-        <button style="width:100px;" type="submit" name="operation" value="viewCart">Shopping Cart</button><br>
-
-        <button style="width:100px;" type="submit" name="operation" value="logout">Logout</button><br>
+        <button style="width:100px;" type="submit" name="operation" value="myOrders">Orders</button>
+        <button style="width:100px;" type="submit" name="operation" value="viewCart">Shopping Cart</button>
+        <button style="width:100px;" type="submit" name="operation" value="logout">Logout</button>
+        <br>
     </form>
 
     <div id="categories" style="float:left;width:200px;height:800px;">

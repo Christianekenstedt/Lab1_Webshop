@@ -90,7 +90,17 @@
                 <%out.print(order.getId()); %>
             </td>
             <td>
-                <%out.print(order.getStatus()); %>
+                <%if (order.getStatus() == 1){%>
+                Received
+                <%}else if (order.getStatus() == 2){%>
+                Picking goods
+                <%}else if (order.getStatus() == 3){%>
+                Packed
+                <%}else if (order.getStatus() == 4){%>
+                Sent
+                <%}else if (order.getStatus() == 5){%>
+                Done
+                <%}%>
             </td>
             <td>
                 <button type="submit" name="orderId" value="<%=order.getId()%>">View</button>

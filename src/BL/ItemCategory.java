@@ -41,4 +41,8 @@ public class ItemCategory {
     public static void addCategory(int parentId, String name){
         ItemCategoryDB.addItemCategoryToDB(name, parentId);
     }
+
+    public static void deleteCategory(int categoryId) {
+        ItemCategoryDB.removeItemCategoryFromDB(categoryId);
+    }
 }

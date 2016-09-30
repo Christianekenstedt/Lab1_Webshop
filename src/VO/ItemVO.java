@@ -23,6 +23,10 @@ public class ItemVO {
 
     }
 
+    public static void addItem(String name, int amount, int categoryId){
+        Item.addItem(name,amount,ItemCategory.getCategoryByID(categoryId));
+    }
+
     public static ItemVO get(int id){
         return new ItemVO(Item.get(id));
     }
@@ -63,4 +67,9 @@ public class ItemVO {
     }
 
     public int getAmount(){return amount;}
+
+    public static void deleteItem(int deleteItemId) {
+        Item.delete(deleteItemId);
+    }
+
 }
