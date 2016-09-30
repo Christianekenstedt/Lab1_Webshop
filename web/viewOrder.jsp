@@ -35,7 +35,19 @@
 <body>
 <div style="margin: auto"align="center">
     <h1>Order requested: <%=request.getParameter("orderId")%></h1>
-    <h3>Order status: <%=order.getStatus()%></h3>
+    <h3>Order status:
+        <%if (order.getStatus() == 1){%>
+        Received
+        <%}else if (order.getStatus() == 2){%>
+        Picking goods
+        <%}else if (order.getStatus() == 3){%>
+        Packed
+        <%}else if (order.getStatus() == 4){%>
+        Sent
+        <%}else if (order.getStatus() == 5){%>
+        Done
+        <%}%>
+    </h3>
     <form action="Webshop" method="post">
         <input type="hidden" name="operation" value="packOrder">
         <table>
@@ -53,7 +65,7 @@
                     <%out.print(item.getName()); %>
                 </td>
                 <td>
-                    <%out.print(item.getCategory());%>
+                    <%out.print(item.getCategory().getName());%>
                 </td>
             </tr>
             <%}%>

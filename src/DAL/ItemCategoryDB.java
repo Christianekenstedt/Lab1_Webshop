@@ -86,10 +86,12 @@ public class ItemCategoryDB extends ItemCategory{
     public static void removeItemCategoryFromDB(int id){
         Connection conn = DBManager.getConnection();
 
-        String query = "";
+        String query = "DELETE FROM ItemCategory WHERE id=?";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1,id);
+            stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {

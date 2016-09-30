@@ -57,4 +57,11 @@ public class ItemCategoryVO {
     }
 
 
+    public static void createCategory(int parentId, String name) {
+        ItemCategory.addCategory(parentId,name);
+    }
+
+    public static void deleteCategory(int categoryId) {
+        ItemCategory.deleteCategory(categoryId);
+    }
 }

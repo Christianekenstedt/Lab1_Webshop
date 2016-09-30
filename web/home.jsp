@@ -20,7 +20,23 @@
 <html>
 <head>
     <title>Home</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: auto;
+        }
 
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
 </head>
 <body style="font-family:Verdana;">
 <div id="wrapper" style="width:800px; margin:auto;position:relative;top:100px;">
@@ -29,17 +45,17 @@
         <%= user.getUsername()%>
         !
 
-        <form action="Webshop" method="post" style="width:100px;">
-            <% if(user.getRole().getName().equals("Admin")){ %>
-                <button style="width:100px;" type="submit" name="operation" value="adminCenter">Administration</button><br><!-- check session variable if allowed -->
-            <% }%>
+    <form action="Webshop" method="post" style="width:100px;">
+        <% if(user.getRole().getName().equals("Admin")){ %>
+            <button style="width:100px;" type="submit" name="operation" value="adminCenter">Administration</button><br><!-- check session variable if allowed -->
+        <% }%>
 
-            <button style="width:100px;" type="submit" name="operation" value="myOrders">Orders</button><br>
+        <button style="width:100px;" type="submit" name="operation" value="myOrders">Orders</button><br>
 
-            <button style="width:100px;" type="submit" name="operation" value="viewCart">Shopping Cart</button><br>
+        <button style="width:100px;" type="submit" name="operation" value="viewCart">Shopping Cart</button><br>
 
-            <button style="width:100px;" type="submit" name="operation" value="logout">Logout</button><br>
-        </form>
+        <button style="width:100px;" type="submit" name="operation" value="logout">Logout</button><br>
+    </form>
 
         <div>
             <form action="Webshop" method="post">
@@ -51,6 +67,7 @@
             </form>
         </div>
     </div>
+
     <div id="items" style="height:800px;">
         <form action="Webshop" method="post">
             <input type="hidden" name="operation" value="buyItem">
