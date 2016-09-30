@@ -10,15 +10,39 @@
 <head>
     <title>Title</title>
 </head>
-<body>
+<body style="font-family:Verdana;">
 <div style="width:500px; margin:auto; position:relative; top:100px;">
-    <form>
+    <form action="Webshop" method="post">
 
-        <table>
-            <% for(UserVO user : UserVO.getAllUsers())
-                out.print(user.getUsername());
-            %>
+        <table style="border:2px black solid;">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Select</th>
+            </tr>
+            <% for(UserVO user : UserVO.getAllUsers()){%>
+                <tr>
+                    <td>
+                        <%=user.getId()%>
+                    </td>
+                    <td>
+                        <%=user.getUsername()%>
+                    </td>
+                    <td>
+                        <%=user.getRole().getName()%>
+                    </td>
+                    <td>
+                        <input style="float:left;" type="radio" name="selected" value="<%=user.getId()%>">
+                    </td>
+                </tr>
+            <%}%>
         </table>
+        <button type="submit" name="operation" value="removeUser">Remove</button>
+        <button style="float:right;" type="submit" name="operation" value="editUser">Edit</button>
+        <br>
+        <br>
+        <button type="submit" name="operation" value="adminCenter">Back</button>
     </form>
 </div>
 </body>
