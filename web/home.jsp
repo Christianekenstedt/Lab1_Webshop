@@ -20,6 +20,7 @@
 <html>
 <head>
     <title>Home</title>
+    <script src="https://use.fontawesome.com/13e83c0e2c.js"></script>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -52,7 +53,7 @@
 
         <button style="width:100px;" type="submit" name="operation" value="myOrders">Orders</button><br>
 
-        <button style="width:100px;" type="submit" name="operation" value="viewCart">Shopping Cart</button><br>
+        <button style="width:100px;" type="submit" name="operation" value="viewCart">Shopping Cart<i class="fa fa-shopping-cart"></i></button><br>
 
         <button style="width:100px;" type="submit" name="operation" value="logout">Logout</button><br>
     </form>
@@ -71,13 +72,13 @@
     <div id="items" style="height:800px;">
         <form action="Webshop" method="post">
             <input type="hidden" name="operation" value="buyItem">
-            <table style="border:2px black solid;width:500px;">
+            <table style="border:2px black solid;width:550px;">
                 <tr>
-                    <th style="width:10%;">Id</th>
-                    <th>Name</th>
-                    <th style="width:10%;">In stock</th>
-                    <th style="width:10%;">Amount</th>
-                    <th style="width:10%;">Buy</th>
+                    <th style="width:auto;">Id</th>
+                    <th style="=width:auto;">Name</th>
+                    <th style="width:auto;">In stock</th>
+                    <th style="width:auto;">Amount</th>
+                    <th style="width:auto;">Buy</th>
                 </tr>
 
             <% for(ItemVO item : ItemVO.getItemsByCategory(selectedCategory)){ %>
@@ -95,7 +96,7 @@
                         <input type="text" name="buyAmount" value="1">
                     </td>
                     <td>
-                        <button type="submit" name="buyItemId" value="<%=item.getId()%>">Buy</button>
+                        <button class="fa fa-cart-plus" type="submit" name="buyItemId" value="<%=item.getId()%>"></button>
                     </td>
                 </tr>
             <%}%>

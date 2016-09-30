@@ -33,7 +33,7 @@ public class WebshopController extends HttpServlet {
                 case "packOrder":
                         manageOrder(request,response);
                     break;
-                case "checkOut":
+                case "checkout":
                     operationCheckout(request,response);
                     break;
                 case "selectCategory":

@@ -12,7 +12,8 @@
 </head>
 <body>
 
-<form>
+<h3>Administration page</h3>
+<form action="Webshop" method="post">
     <button type="submit" name="operation" value="manageItems">Manage items and categories</button>
     <button type="submit" name="operation" value="viewUsers">Manage users</button>
 
