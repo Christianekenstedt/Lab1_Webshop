@@ -1,5 +1,6 @@
 package Controllers;
 
+import VO.OrderVO;
 import VO.ItemCategoryVO;
 import VO.ShoppingCartVO;
 import VO.UserVO;
@@ -25,6 +26,18 @@ public class WebshopController extends HttpServlet {
                 case "logout":
                     operationLogout(request, response);
                     break;
+                case "myOrders":
+                    request.getRequestDispatcher("/orders.jsp").forward(request, response);
+                    break;
+                case "manageOrder":
+                        request.getRequestDispatcher("/viewOrder.jsp").forward(request,response);
+                    break;
+                case "packOrder":
+                        manageOrder(request,response);
+                    break;
+                case "checkOut":
+
+                    break;
                 case "selectCategory":
                     operationSelectCategory(request, response);
                     break;
@@ -40,7 +53,7 @@ public class WebshopController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request,response);
     }
 
 
@@ -78,5 +91,10 @@ public class WebshopController extends HttpServlet {
         int amount = Integer.parseInt(request.getParameter("buyAmount"));
         ShoppingCartVO.addItemToCart(userId, itemId, amount);
         request.getRequestDispatcher("/home.jsp").forward(request, response);
+    }
+
+    private void manageOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        OrderVO.updateOrder(Integer.parseInt(request.getParameter("pOrder")));
+        request.getRequestDispatcher("/orders.jsp").forward(request,response);
     }
 }

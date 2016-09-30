@@ -15,4 +15,20 @@ public class ShoppingCartItem {
         this.amount = amount;
         this.cartId = cartId;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public int getCartId() {
+        return cartId;
+    }
 }
