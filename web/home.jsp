@@ -70,8 +70,7 @@
     </div>
 
     <div id="items" style="height:800px;">
-        <form action="Webshop" method="post">
-            <input type="hidden" name="operation" value="buyItem">
+
             <table style="border:2px black solid;width:550px;">
                 <tr>
                     <th style="width:auto;">Id</th>
@@ -82,26 +81,29 @@
                 </tr>
 
             <% for(ItemVO item : ItemVO.getItemsByCategory(selectedCategory)){ %>
-                <tr>
-                    <td>
-                        <%=item.getId()%>
-                    </td>
-                    <td>
-                        <%=item.getName()%>
-                    </td>
-                    <td>
-                        <%=item.getAmount()%>
-                    </td>
-                    <td>
-                        <input type="text" name="buyAmount" value="1">
-                    </td>
-                    <td>
-                        <button class="fa fa-cart-plus" type="submit" name="buyItemId" value="<%=item.getId()%>"></button>
-                    </td>
-                </tr>
+                <form action="Webshop" method="post">
+                    <input type="hidden" name="operation" value="buyItem">
+                    <tr>
+                        <td>
+                            <%=item.getId()%>
+                        </td>
+                        <td>
+                            <%=item.getName()%>
+                        </td>
+                        <td>
+                            <%=item.getAmount()%>
+                        </td>
+                        <td>
+                            <input type="text" name="buyAmount" value="1">
+                        </td>
+                        <td>
+                            <button class="fa fa-cart-plus" type="submit" name="buyItemId" value="<%=item.getId()%>"></button>
+                        </td>
+                    </tr>
+                </form>
             <%}%>
             </table>
-        </form>
+
     </div>
 
 </div>

@@ -42,6 +42,11 @@ public class UserVO {
         User.addUser(username, password, roleId);
     }
 
+    public static void deleteUser(int userId){
+        //Perform check so that it is actually an admin before we get here
+        User.deleteUser(userId);
+    }
+
     public static Collection<UserVO> getAllUsers(){
         Vector<UserVO> users = new Vector<>();
 

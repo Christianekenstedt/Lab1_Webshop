@@ -78,6 +78,11 @@ public class WebshopController extends HttpServlet {
                 case "viewUsers":
                     request.getRequestDispatcher("/view-users.jsp").forward(request,response);
                     break;
+                case "removeUser":
+                    operationDeleteUser(request, response);
+                    break;
+                case "editUser":
+                    operationEditUser(request, response);
                 default:
                     response.sendError(HttpServletResponse.SC_NOT_FOUND);
                     break;
@@ -129,14 +134,6 @@ public class WebshopController extends HttpServlet {
         doPost(request,response);
     }
 
-
-    /**
-     * TODO: one servlet for each operation area (ie. authentication) or one controller for all?
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
     private void operationLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserVO user = UserVO.authenticate(request.getParameter("username"), request.getParameter("password"));
         if(user != null){
@@ -203,6 +200,19 @@ public class WebshopController extends HttpServlet {
         OrderVO.postOrder(Integer.parseInt(request.getSession().getAttribute("userId").toString()));
         request.setAttribute("orderCreated",true);
         request.getRequestDispatcher("/orders.jsp").forward(request,response);
+    }
+
+    private void operationDeleteUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserVO user = UserVO.getUserByID(Integer.parseInt(request.getSession().getAttribute("userId").toString()));
+        if(user.getRole().getName().equals("Admin")){
+            int userId = Integer.parseInt(request.getParameter("selectedUser"));
+            UserVO.deleteUser(userId);
+        }
+        request.getRequestDispatcher("/view-users.jsp").forward(request,response);
+    }
+
+    private void operationEditUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/manage-user.jsp").forward(request, response);
     }
 
 }

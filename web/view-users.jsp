@@ -8,13 +8,30 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>View Users</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: auto;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
 </head>
 <body style="font-family:Verdana;">
 <div style="width:500px; margin:auto; position:relative; top:100px;">
     <form action="Webshop" method="post">
 
-        <table style="border:2px black solid;">
+        <table style="border:2px black solid;width:500px;">
             <tr>
                 <th>Id</th>
                 <th>Name</th>
@@ -33,7 +50,7 @@
                         <%=user.getRole().getName()%>
                     </td>
                     <td>
-                        <input style="float:left;" type="radio" name="selected" value="<%=user.getId()%>">
+                        <input style="float:left;" type="radio" name="selectedUser" value="<%=user.getId()%>">
                     </td>
                 </tr>
             <%}%>
