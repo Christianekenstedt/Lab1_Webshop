@@ -37,8 +37,8 @@ public abstract class Item {
         ItemDB.deleteFromDB(id);
     }
 
-    public static void update(int id, String name, int amount, ItemCategory category){
-        ItemDB.updateInDB(id, name, amount, category);
+    public static void update(int id, String name, int amount, int newItemCategoryId){
+        ItemDB.updateInDB(id, name, amount, newItemCategoryId);
     }
 
     public ItemCategory getCategory(){

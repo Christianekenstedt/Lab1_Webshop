@@ -19,7 +19,7 @@
         <input type="submit" value="Login" style="align-content:center;">
     </form>
     <form action="Webshop" method="post">
-        <input type="submit" name="operation" value="goSignup">
+        <button type="submit" name="operation" value="goSignup">Sign up!</button>
     </form>
 </div>
 </body>

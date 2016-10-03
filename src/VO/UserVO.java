@@ -47,6 +47,10 @@ public class UserVO {
         User.deleteUser(userId);
     }
 
+    public static void updateUser(int id, String username, int roleId){
+        User.updateUser(id, username, roleId);
+    }
+
     public static Collection<UserVO> getAllUsers(){
         Vector<UserVO> users = new Vector<>();
 

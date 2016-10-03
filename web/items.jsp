@@ -100,13 +100,13 @@
                 </div>
                 <div id="items" style="height:auto;">
                     <form action="Webshop" method="post">
-                        <input type="hidden" name="operation" value="deleteItem">
+
                         <table style="width: auto">
                             <tr>
                                 <th style="width:10%;">Id</th>
                                 <th>Name</th>
                                 <th style="width:10%;">In stock</th>
-                                <th style="width:10%;">Delete</th>
+                                <th style="width:10%;">Select</th>
                             </tr>
 
                             <% for(ItemVO item : ItemVO.getItemsByCategory(selectedCategory)){ %>
@@ -121,11 +121,13 @@
                                     <%=item.getAmount()%>
                                 </td>
                                 <td>
-                                    <button type="submit" name="deleteItemId" value="<%=item.getId()%>">Delete</button>
+                                    <input type="radio" name="selectedItemId" value="<%=item.getId()%>">
                                 </td>
                             </tr>
                             <%}%>
                         </table>
+                        <input type="submit" name="operation" value="deleteItem">
+                        <input type="submit" name="operation" value="manageItem">
                     </form>
                 </div>
             </div>

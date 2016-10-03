@@ -136,6 +136,24 @@ public class UserDB extends User {
         }
     }
 
+    public static void updateUserInDB(int id, String username, int roleId){
+        Connection conn = DBManager.getConnection();
+
+        String query = "UPDATE [User] SET username = ?, role = ? WHERE id = ?";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, username);
+            stmt.setInt(2, roleId);
+            stmt.setInt(3, id);
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DBManager.returnConnection(conn);
+        }
+    }
+
     public static void deleteUserFromDB(int id){
         Connection conn = DBManager.getConnection();
 

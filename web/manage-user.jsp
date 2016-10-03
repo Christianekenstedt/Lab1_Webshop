@@ -12,19 +12,23 @@
 <head>
     <title>Title</title>
 </head>
-<body>
-    <div style="width:500px; margin:auto; position:relative; top:100px;">
+<body style="font-family: Verdana;">
+    <div style="width:500px; margin:auto; position:relative; top:100px;border:2px black solid;padding:20px;">
         <form>
+            Id
+            <input type="hidden" name="updateUserId" value="<%=editingUser.getId()%>">
+            <%=editingUser.getId()%><br><br>
             Username<br>
-            <input type="text" name="username" value="<%=editingUser.getUsername()%>"><br>
+            <input type="text" name="newUsername" value="<%=editingUser.getUsername()%>"><br><br>
             Role<br>
-            <select name="selectedRole">
+            <select name="newRoleId">
                 <% for(RoleVO role : RoleVO.viewAllRoles()){%>
                     <option <%if(editingUser.getRole().getId() == role.getId()) out.print("selected");%> value="<%=role.getId()%>"><%=role.getName()%></option>
                 <%}%>
-            </select><br>
-            <button type="submit" name="operation" value="updateUser">Save</button>
+            </select><br><br><br>
+
             <button type="submit" name="operation" value="viewUsers">Cancel</button>
+            <button style="float:right;" type="submit" name="operation" value="updateUser">Save</button>
         </form>
     </div>
 </body>

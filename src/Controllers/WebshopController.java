@@ -69,6 +69,12 @@ public class WebshopController extends HttpServlet {
                 case "deleteItem":
                     operationDeleteItem(request,response);
                     break;
+                case "manageItem":
+                    request.getRequestDispatcher("/manage-item.jsp").forward(request,response);
+                    break;
+                case "updateItem":
+                    operationUpdateItem(request,response);
+                    break;
                 case "createCategory":
                     operationCreateCategory(request,response);
                     break;
@@ -83,6 +89,9 @@ public class WebshopController extends HttpServlet {
                     break;
                 case "editUser":
                     operationEditUser(request, response);
+                    break;
+                case "updateUser":
+                    operationUpdateUser(request, response);
                 default:
                     response.sendError(HttpServletResponse.SC_NOT_FOUND);
                     break;
@@ -102,7 +111,7 @@ public class WebshopController extends HttpServlet {
     private void operationDeleteItem(HttpServletRequest request, HttpServletResponse response) {
         UserVO user = UserVO.getUserByID(Integer.parseInt(request.getSession().getAttribute("userId").toString()));
         if (user.getRole().getName().equals("Admin")){
-            ItemVO.deleteItem(Integer.parseInt(request.getParameter("deleteItemId")));
+            ItemVO.deleteItem(Integer.parseInt(request.getParameter("selectedItemId")));
         }
     }
 
@@ -213,6 +222,25 @@ public class WebshopController extends HttpServlet {
 
     private void operationEditUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/manage-user.jsp").forward(request, response);
+    }
+
+    private void operationUpdateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int userId = Integer.parseInt(request.getParameter("updateUserId"));
+        int roleID = Integer.parseInt(request.getParameter("newRoleId"));
+        String username = request.getParameter("newUsername");
+
+        UserVO.updateUser(userId, username, roleID);
+        request.getRequestDispatcher("/view-users.jsp").forward(request,response);
+    }
+
+    private void operationUpdateItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int itemId = Integer.parseInt(request.getParameter("updateItemId"));
+        String newName = request.getParameter("newItemName");
+        int newCategoryId = Integer.parseInt(request.getParameter("newCategoryId"));
+        int newAmount = Integer.parseInt(request.getParameter("newAmount"));
+
+        ItemVO.updateItem(itemId, newName, newCategoryId, newAmount);
+        request.getRequestDispatcher("/items.jsp").forward(request,response);
     }
 
 }

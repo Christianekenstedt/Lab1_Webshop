@@ -12,12 +12,13 @@
 </head>
 <body>
 
-<h3>Administration page</h3>
-<form action="Webshop" method="post">
-    <button type="submit" name="operation" value="manageItems">Manage items and categories</button>
-    <button type="submit" name="operation" value="viewUsers">Manage users</button>
-
-</form>
-
+<div style="width:500px; margin:auto; position:relative; top:100px;border:2px black solid;padding:20px;">
+    <h3>Administration page</h3>
+    <form action="Webshop" method="post">
+        <button type="submit" name="operation" value="manageItems">Manage items and categories</button><br>
+        <button type="submit" name="operation" value="viewUsers">Manage users</button><br><br>
+        <button type="submit" name="operation" value="goHome">Back</button><br>
+    </form>
+</div>
 </body>
 </html>

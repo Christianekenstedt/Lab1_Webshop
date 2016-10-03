@@ -51,6 +51,10 @@ public class User {
         UserDB.updateUserInDB(id, username, oldPassword, newPassword, role);
     }
 
+    public static void updateUser(int id, String username, int roleId){
+        UserDB.updateUserInDB(id, username, roleId);
+    }
+
     public static void deleteUser(int id){
         UserDB.deleteUserFromDB(id);
     }

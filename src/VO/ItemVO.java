@@ -55,6 +55,10 @@ public class ItemVO {
         return toShow;
     }
 
+    public static void updateItem(int id, String newName, int newCategoryId, int newAmount){
+        Item.update(id, newName, newAmount, newCategoryId);
+    }
+
     public ItemCategoryVO getCategory(){
         return this.category;
     }

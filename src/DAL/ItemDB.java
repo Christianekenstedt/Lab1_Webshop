@@ -112,17 +112,17 @@ public class ItemDB extends Item {
         }
     }
 
-    public static void updateInDB(int id, String name, int amount, ItemCategory category){
+    public static void updateInDB(int id, String name, int amount, int category){
         Connection con = DBManager.getConnection();
 
-        String query = "UPDATE Item SET name = ?, amount = ?, category = ? " +
+        String query = "UPDATE Item SET name = ?, inStock = ?, category = ? " +
                 "WHERE id = ?";
 
         try{
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1, name);
             stmt.setInt(2, amount);
-            stmt.setInt(3, category.getId());
+            stmt.setInt(3, category);
             stmt.setInt(4, id);
             stmt.execute();
         } catch (SQLException e) {
