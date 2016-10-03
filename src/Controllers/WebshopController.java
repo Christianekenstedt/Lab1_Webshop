@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.util.Locale;
 
 /**
+ * This is the controller class for the webapplication. Posts and gets go to this class.
+ * By setting the operation attribute in each form submit you will access the different operations available in the webapp.
+ * Before a client reaches this controller, it has to pass the accessfilter class which rejects unauthorized clients.
  * Created by Anton on 2016-09-29.
  */
 public class WebshopController extends HttpServlet {

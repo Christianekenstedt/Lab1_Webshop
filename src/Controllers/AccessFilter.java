@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
+ * This filter will block unauthorized clients and send them to login-page.
  * Created by Anton on 2016-09-29.
  */
 public class AccessFilter implements Filter {
