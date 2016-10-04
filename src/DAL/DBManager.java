@@ -14,7 +14,7 @@ import java.util.Vector;
 public class DBManager {
 
     static String connectionurl = "jdbc:sqlserver://lab1webshop.database.windows.net:1433;" +
-            "database=Webshop;" +
+            "database=webshop2;" +
             "user=lab1admin@lab1webshop;" +
             "password=Antonchristian95;" +
             "encrypt=true;" +

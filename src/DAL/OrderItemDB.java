@@ -2,6 +2,7 @@ package DAL;
 
 import BL.Item;
 import BL.OrderItem;
+import VO.ItemVO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,17 +15,17 @@ import java.util.Vector;
  * Created by chris on 2016-09-30.
  */
 public class OrderItemDB extends OrderItem{
-    public OrderItemDB(Item item) {
-        super(item);
+    public OrderItemDB(Item item, int amount) {
+        super(item,amount);
     }
 
-    public static Vector<Item> getItems(int id) {
-        Vector<Item> items = new Vector<>();
+    public static Collection<OrderItem> getItems(int id) {
+        Vector<OrderItem> items = new Vector<>();
         PreparedStatement stmt = null;
 
         Connection con = DBManager.getConnection();
 
-        String query = "SELECT item FROM OrderItem WHERE orderId = ?";
+        String query = "SELECT item, amount FROM OrderItem WHERE orderId = ?";
         //TODO: Se till att allt sammanhängande tas bort vid en deleteOrder().
         try{
             stmt = con.prepareStatement(query);
@@ -33,7 +34,7 @@ public class OrderItemDB extends OrderItem{
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()){
-                items.add(ItemDB.get(rs.getInt("item")));
+                items.add(new OrderItemDB(ItemDB.get(rs.getInt("item")),rs.getInt("amount")));
             }
 
         } catch (SQLException e) {

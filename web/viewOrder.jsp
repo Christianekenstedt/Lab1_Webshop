@@ -35,6 +35,9 @@
 <body>
 <div style="margin: auto"align="center">
     <h1>Order requested: <%=request.getParameter("orderId")%></h1>
+    <form action="Webshop" method="post">
+        <button style="margin-top:10px;" type="submit" name="operation" value="goHome">Home</button>
+    </form>
     <h3>Order status:
         <%if (order.getStatus() == 1){%>
         Received
@@ -54,6 +57,7 @@
             <tr>
                 <th>Item id</th>
                 <th>Item name</th>
+                <th>Amount</th>
                 <th>Category</th>
             </tr>
             <%for (OrderItemVO item: OrderItemVO.getItemsFromOrder(Integer.parseInt(request.getParameter("orderId")))){%>
@@ -63,6 +67,9 @@
                 </td>
                 <td>
                     <%out.print(item.getName()); %>
+                </td>
+                <td>
+                    <%out.print(item.getAmount());%>
                 </td>
                 <td>
                     <%out.print(item.getCategory().getName());%>

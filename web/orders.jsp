@@ -40,7 +40,9 @@
             <p style="color: green">Order created.</p>
         <%}%>
     <%}%>
-
+    <form action="Webshop" method="post">
+        <button style="margin-top:10px;" type="submit" name="operation" value="goHome">Home</button>
+    </form>
 <form action="Webshop" method="post">
     <input type="hidden" name="operation" value="manageOrder">
 

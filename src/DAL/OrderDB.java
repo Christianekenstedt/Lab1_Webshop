@@ -1,5 +1,6 @@
 package DAL;
 
+import BL.Item;
 import BL.Order;
 import BL.ShoppingCartItem;
 import BL.User;
@@ -118,7 +119,7 @@ public class OrderDB extends Order{
 
         Connection con = DBManager.getConnection();
         String newOrderQuery = "INSERT INTO ShopOrder (owner) VALUES (?)";
-        String itemsToOrderQuery = "INSERT INTO OrderItem (orderId,item) VALUES (?,?)";
+        String itemsToOrderQuery = "INSERT INTO OrderItem (orderId,item,amount) VALUES (?,?,?)";
 
 
         try {
@@ -135,9 +136,26 @@ public class OrderDB extends Order{
             itemsStmt = con.prepareStatement(itemsToOrderQuery);
 
             for(ShoppingCartItem item : ShoppingCartDB.getCartByOwner(owner).getItems()){
+
                 itemsStmt.setInt(1,auto_id);
                 itemsStmt.setInt(2,item.getItem().getId());
+                itemsStmt.setInt(3,item.getAmount());
                 itemsStmt.execute();
+
+                PreparedStatement itemDec = con.prepareStatement("UPDATE Item SET Item.inStock = Item.inStock - ? WHERE Item.id = ?");
+                itemDec.setInt(1,item.getAmount());
+                itemDec.setInt(2,item.getItem().getId());
+                itemDec.executeUpdate();
+
+                PreparedStatement checkStmt = con.prepareStatement("SELECT Item.inStock FROM Item Where id = ?");
+                checkStmt.setInt(1,item.getItem().getId());
+                ResultSet res = checkStmt.executeQuery();
+
+                if (res.next()){
+                    System.out.println(res.getInt(1));
+                    if (res.getInt(1) < 0)
+                        con.rollback();
+                }
             }
             con.commit();
         } catch (SQLException e) {
@@ -221,5 +239,9 @@ public class OrderDB extends Order{
             }
             DBManager.returnConnection(con);
         }
+    }
+
+    private void decStockOf(int itemId){
+
     }
 }

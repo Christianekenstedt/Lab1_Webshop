@@ -17,15 +17,15 @@ public class OrderItemVO {
     private int amount;
     private ItemCategory category;
 
-    public OrderItemVO(Item item){
-        this.id = item.getId();
-        this.name = item.getName();
+    public OrderItemVO(OrderItem item){
+        this.id = item.getItem().getId();
+        this.name = item.getItem().getName();
         this.amount = item.getAmount();
-        this.category = item.getCategory();
+        this.category = item.getItem().getCategory();
     }
     public static Collection<OrderItemVO> getItemsFromOrder(int id){
         Vector<OrderItemVO> items = new Vector<>();
-        for (Item item: OrderItem.getItemsFromOrder(id)){
+        for (OrderItem item: OrderItem.getItemsFromOrder(id)){
             items.add(new OrderItemVO(item));
         }
         return items;
