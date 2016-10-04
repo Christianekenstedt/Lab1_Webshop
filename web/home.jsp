@@ -69,6 +69,7 @@
             <form action="Webshop" method="post">
                 <input type="hidden" name="operation" value="selectCategory">
                 Categories<br>
+                <button style="width:100px;">All items</button><br>
                 <% for (ItemCategoryVO category: ItemCategoryVO.getAllCategories()) {%>
                     <button style="width:100px;" type="submit" name="selectedCategory" value="<%=category.getId()%>"><%=category.getName()%></button><br>
                 <%}%>
@@ -98,7 +99,7 @@
                         <td>
                             <%=item.getName()%>
                         </td>
-                        <td>
+                        <td style="text-align:right;">
                             <%=item.getPrice()%>
                         </td>
                         <td>

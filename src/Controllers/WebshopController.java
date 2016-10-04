@@ -19,6 +19,12 @@ public class WebshopController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String operation = request.getParameter("operation");
 
+        if(!operation.equals("login") && request.getSession().getAttribute("username") == null){
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+            return;
+        }
+
+
         if(operation != null){
             switch(operation){
                 case "login":
@@ -203,10 +209,10 @@ public class WebshopController extends HttpServlet {
         String username = request.getParameter("username");
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
-        int roleId = 1;
+        int roleId = 3;
         if(password1.equals(password2)){
             UserVO.addUser(username, password1, roleId);
-            request.getRequestDispatcher("/home.jsp").forward(request, response);
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
         else{
             request.getRequestDispatcher("/signup.jsp").forward(request, response);

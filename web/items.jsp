@@ -127,13 +127,13 @@
                                     <%=item.getAmount()%>
                                 </td>
                                 <td>
-                                    <input type="radio" name="selectedItemId" value="<%=item.getId()%>">
+                                    <input checked type="radio" name="selectedItemId" value="<%=item.getId()%>">
                                 </td>
                             </tr>
                             <%}%>
                         </table>
-                        <input type="submit" name="operation" value="deleteItem">
-                        <input type="submit" name="operation" value="manageItem">
+                        <button type="submit" name="operation" value="deleteItem">Delete Selected</button>
+                        <button type="submit" name="operation" value="manageItem">Manage Selected</button>
                     </form>
                 </div>
             </div>
