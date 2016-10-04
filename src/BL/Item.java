@@ -13,12 +13,14 @@ public abstract class Item {
     private int id;
     private int amount;
     private ItemCategory category;
+    private float price;
 
-    protected Item(int id, String name, int amount, ItemCategory category){
+    protected Item(int id, String name, int amount, ItemCategory category, float price){
         this.name=name;
         this.id=id;
         this.amount = amount;
         this.category = category;
+        this.price = price;
     }
 
     public static Collection<Item> getAll(){
@@ -29,16 +31,16 @@ public abstract class Item {
         return ItemDB.getFromDB(id);
     }
 
-    public static void addItem(String name, int amount, ItemCategory category){
-        ItemDB.addItemToDB(name, amount, category);
+    public static void addItem(String name, int amount, ItemCategory category, float price){
+        ItemDB.addItemToDB(name, amount, category, price);
     }
 
     public static void delete(int id){
         ItemDB.deleteFromDB(id);
     }
 
-    public static void update(int id, String name, int amount, int newItemCategoryId){
-        ItemDB.updateInDB(id, name, amount, newItemCategoryId);
+    public static void update(int id, String name, int amount, int newItemCategoryId, float price){
+        ItemDB.updateInDB(id, name, amount, newItemCategoryId, price);
     }
 
     public ItemCategory getCategory(){
@@ -55,5 +57,9 @@ public abstract class Item {
 
     public int getAmount(){
         return this.amount;
+    }
+
+    public float getPrice(){
+        return this.price;
     }
 }

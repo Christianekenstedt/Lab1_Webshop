@@ -103,28 +103,32 @@ public class WebshopController extends HttpServlet {
 
     }
 
-    private void operationCreateCategory(HttpServletRequest request, HttpServletResponse response) {
+    private void operationCreateCategory(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException  {
         int parent = Integer.parseInt(request.getParameter("parentCategoryId"));
         if (parent == -1) {}
         String name = request.getParameter("categoryName");
         ItemCategoryVO.createCategory(parent,name);
 
+        request.getRequestDispatcher("/items.jsp").forward(request,response);
     }
 
-    private void operationDeleteItem(HttpServletRequest request, HttpServletResponse response) {
+    private void operationDeleteItem(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException  {
         UserVO user = UserVO.getUserByID(Integer.parseInt(request.getSession().getAttribute("userId").toString()));
         if (user.getRole().getName().equals("Admin")){
             ItemVO.deleteItem(Integer.parseInt(request.getParameter("selectedItemId")));
         }
+        request.getRequestDispatcher("/items.jsp").forward(request,response);
     }
 
-    private void operationAddItem(HttpServletRequest request, HttpServletResponse response) {
+    private void operationAddItem(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException  {
         String itemName = request.getParameter("itemName");
         int amount = Integer.parseInt(request.getParameter("itemStock"));
         String s = request.getParameter("itemCategory");
         int categoryId = Integer.parseInt(s);
+        float price = Float.parseFloat(request.getParameter("itemPrice"));
+        ItemVO.addItem(itemName,amount,categoryId, price);
 
-        ItemVO.addItem(itemName,amount,categoryId);
+        request.getRequestDispatcher("/items.jsp").forward(request,response);
     }
 
     private void operationAdministration(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -140,6 +144,7 @@ public class WebshopController extends HttpServlet {
         if (user.getRole().getName().equals("Admin")){
             ItemCategoryVO.deleteCategory(Integer.parseInt(request.getParameter("categoryId")));
         }
+        request.getRequestDispatcher("/items.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -241,8 +246,9 @@ public class WebshopController extends HttpServlet {
         String newName = request.getParameter("newItemName");
         int newCategoryId = Integer.parseInt(request.getParameter("newCategoryId"));
         int newAmount = Integer.parseInt(request.getParameter("newAmount"));
+        float newPrice = Float.parseFloat(request.getParameter("newItemPrice"));
 
-        ItemVO.updateItem(itemId, newName, newCategoryId, newAmount);
+        ItemVO.updateItem(itemId, newName, newCategoryId, newAmount, newPrice);
         request.getRequestDispatcher("/items.jsp").forward(request,response);
     }
 

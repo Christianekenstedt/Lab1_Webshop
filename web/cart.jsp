@@ -12,17 +12,37 @@
 <% UserVO user = UserVO.getUserByID(Integer.parseInt(session.getAttribute("userId").toString()));%>
 <html>
 <head>
-    <title>Title</title>
+    <title>Shopping Cart</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: auto;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
 </head>
 <body>
     <div style="width:500px; margin:auto; position:relative; top:100px;">
 
+        <h3>Shopping cart of '<%=user.getUsername()%>'</h3>
         <form action="Webshop" method="post" >
             <input type="hidden" name="operation" value="cartRemoveItem">
             <table style="border:2px solid black;">
                 <tr>
                     <th>Id</th>
-                    <th>Item(x)</th>
+                    <th>Item</th>
+                    <th>Amount</th>
+                    <th>Price</th>
                     <th style="width:10%;">Remove</th>
                 </tr>
                 <% for(ShoppingCartItemVO item : ShoppingCartVO.getCartByUser(user.getId()).getItems()){%>
@@ -32,14 +52,26 @@
                     </td>
                     <td>
                         <%=item.getItem().getName()%>
-                        <% out.println("(" + item.getAmount() + ")");%>
+                    </td>
+                    <td>
+                        <%=item.getAmount()%>
+                    </td>
+                    <td>
+                        <%=item.getAmount() * item.getItem().getPrice()%>
                     </td>
                     <td>
                         <button type="submit" name="removeItemId" value="<%=item.getId()%>">Remove</button>
                     </td>
                 </tr>
                 <%}%>
-
+                <tr>
+                    <td colspan="3">
+                        Total:
+                    </td>
+                    <td colspan="2">
+                        <%=ShoppingCartVO.getCartByUser(user.getId()).getTotalPrice()%>
+                    </td>
+                </tr>
             </table>
 
         </form>

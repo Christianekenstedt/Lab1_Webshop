@@ -35,7 +35,7 @@
     </style>
     <title>Manage items</title>
 </head>
-<body>
+<body style="font-family: Verdana;">
 <div id="wrapper" style="width:800px; margin:auto;padding: 10px">
     <h3>Add new Item:</h3>
     <div style="border:2px black solid;width:auto;" align="center">
@@ -45,6 +45,8 @@
 
                 Item name:<br>
                 <input type="text" name="itemName" placeholder="Item name"><br>
+                Price:<br>
+                <input type="number" step="0.01" name="itemPrice" placeholder="0.00"><br>
                 In stock:<br>
                 <input type="number" name="itemStock" placeholder="0"><br>
                 <select name="itemCategory">
@@ -105,7 +107,8 @@
                             <tr>
                                 <th style="width:10%;">Id</th>
                                 <th>Name</th>
-                                <th style="width:10%;">In stock</th>
+                                <th style="width:10%;">Price</th>
+                                <th>In stock</th>
                                 <th style="width:10%;">Select</th>
                             </tr>
 
@@ -116,6 +119,9 @@
                                 </td>
                                 <td>
                                     <%=item.getName()%>
+                                </td>
+                                <td>
+                                    <%=item.getPrice()%>
                                 </td>
                                 <td>
                                     <%=item.getAmount()%>
@@ -132,6 +138,11 @@
                 </div>
             </div>
         </div>
+    <form action="Webshop" method="post">
+        <button type="submit" name="operation" value="adminCenter">
+            Back
+        </button>
+    </form>
     </div>
 </body>
 </html>

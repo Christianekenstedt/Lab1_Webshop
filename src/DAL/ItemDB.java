@@ -11,8 +11,8 @@ import java.util.Vector;
  */
 public class ItemDB extends Item {
 
-    private ItemDB(int id, String name, int amount, ItemCategory category){
-        super(id, name, amount, category);
+    private ItemDB(int id, String name, int amount, ItemCategory category, float price){
+        super(id, name, amount, category, price);
     }
 
     public static Item getFromDB(int id){
@@ -28,7 +28,8 @@ public class ItemDB extends Item {
                 String name = rs.getString("name");
                 int amount = rs.getInt("inStock");
                 ItemCategory cat = ItemCategory.getCategoryByID(rs.getInt("category"));
-                return new ItemDB(id, name, amount, cat);
+                float price = rs.getFloat("price");
+                return new ItemDB(id, name, amount, cat, price);
             }
 
         } catch (SQLException e) {
@@ -56,7 +57,8 @@ public class ItemDB extends Item {
                 int amount = rs.getInt("inStock");
                 String name = rs.getString("name");
                 ItemCategory cat = ItemCategory.getCategoryByID(rs.getInt("category"));
-                items.add(new ItemDB(id, name, amount, cat));
+                float price = rs.getFloat("price");
+                items.add(new ItemDB(id, name, amount, cat, price));
             }
         }catch(SQLException e){
             e.printStackTrace();
@@ -68,20 +70,21 @@ public class ItemDB extends Item {
     }
 
 
-    public static void addItemToDB(String name, int amount, ItemCategory category){
+    public static void addItemToDB(String name, int amount, ItemCategory category, float price){
 
         Connection con = DBManager.getConnection();
 
         if(con==null)
             return;
 
-        String query = "INSERT INTO Item (name, inStock, category) VALUES(?, ?, ?)";
+        String query = "INSERT INTO Item (name, inStock, category, price) VALUES(?, ?, ?, ?)";
 
         try {
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1, name);
             stmt.setInt(2, amount);
             stmt.setInt(3, category.getId());
+            stmt.setFloat(4, price);
             stmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -112,10 +115,10 @@ public class ItemDB extends Item {
         }
     }
 
-    public static void updateInDB(int id, String name, int amount, int category){
+    public static void updateInDB(int id, String name, int amount, int category, float price){
         Connection con = DBManager.getConnection();
 
-        String query = "UPDATE Item SET name = ?, inStock = ?, category = ? " +
+        String query = "UPDATE Item SET name = ?, inStock = ?, category = ?, price = ? " +
                 "WHERE id = ?";
 
         try{
@@ -123,7 +126,8 @@ public class ItemDB extends Item {
             stmt.setString(1, name);
             stmt.setInt(2, amount);
             stmt.setInt(3, category);
-            stmt.setInt(4, id);
+            stmt.setFloat(4, price);
+            stmt.setInt(5, id);
             stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();

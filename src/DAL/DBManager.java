@@ -35,17 +35,19 @@ public class DBManager {
         }
     }
 
-    public synchronized static Connection getConnection(){
-        if(connPool.size() < 1)
+    public static Connection getConnection(){
+        while(connPool.size() < 1){
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        else{
-            return connPool.remove(0);
         }
-        return null;
+        return takeFromPool();
+    }
+
+    private synchronized static Connection takeFromPool(){
+        return connPool.remove(0);
     }
 
     public synchronized static void returnConnection(Connection conn){

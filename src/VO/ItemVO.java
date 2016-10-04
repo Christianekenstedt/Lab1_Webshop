@@ -14,17 +14,18 @@ public class ItemVO {
     private int id;
     private int amount;
     private ItemCategoryVO category;
+    private float price;
 
     public ItemVO(Item item){
         this.id = item.getId();
         this.name = item.getName();
         this.amount = item.getAmount();
         this.category = new ItemCategoryVO(item.getCategory());
-
+        this.price = item.getPrice();
     }
 
-    public static void addItem(String name, int amount, int categoryId){
-        Item.addItem(name,amount,ItemCategory.getCategoryByID(categoryId));
+    public static void addItem(String name, int amount, int categoryId, float price){
+        Item.addItem(name,amount,ItemCategory.getCategoryByID(categoryId), price);
     }
 
     public static ItemVO get(int id){
@@ -55,8 +56,8 @@ public class ItemVO {
         return toShow;
     }
 
-    public static void updateItem(int id, String newName, int newCategoryId, int newAmount){
-        Item.update(id, newName, newAmount, newCategoryId);
+    public static void updateItem(int id, String newName, int newCategoryId, int newAmount, float price){
+        Item.update(id, newName, newAmount, newCategoryId, price);
     }
 
     public ItemCategoryVO getCategory(){
@@ -71,6 +72,8 @@ public class ItemVO {
     }
 
     public int getAmount(){return amount;}
+
+    public float getPrice(){return price;}
 
     public static void deleteItem(int deleteItemId) {
         Item.delete(deleteItemId);

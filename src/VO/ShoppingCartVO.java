@@ -37,4 +37,12 @@ public class ShoppingCartVO {
     public Collection<ShoppingCartItemVO> getItems(){
         return items;
     }
+
+    public float getTotalPrice(){
+        float sum = 0;
+        for(ShoppingCartItemVO item : items){
+            sum += item.getAmount() * item.getItem().getPrice();
+        }
+        return sum;
+    }
 }

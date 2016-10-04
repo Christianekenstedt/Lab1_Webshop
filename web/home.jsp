@@ -37,6 +37,9 @@
         tr:nth-child(even) {
             background-color: #dddddd;
         }
+        input{
+            width:30px;
+        }
     </style>
 </head>
 <body style="font-family:Verdana;">
@@ -44,16 +47,20 @@
     <div id="categories" style="float:left;width:200px;height:800px;">
         Welcome
         <%= user.getUsername()%>
-        !
+        !<br>
 
     <form action="Webshop" method="post" style="width:100px;">
+        <br>
         <% if(user.getRole().getName().equals("Admin")){ %>
             <button style="width:100px;" type="submit" name="operation" value="adminCenter">Administration</button><br><!-- check session variable if allowed -->
         <% }%>
+        <br>
 
         <button style="width:100px;" type="submit" name="operation" value="myOrders">Orders</button><br>
 
         <button style="width:100px;" type="submit" name="operation" value="viewCart">Shopping Cart<i class="fa fa-shopping-cart"></i></button><br>
+
+        <br>
 
         <button style="width:100px;" type="submit" name="operation" value="logout">Logout</button><br>
     </form>
@@ -75,6 +82,7 @@
                 <tr>
                     <th style="width:auto;">Id</th>
                     <th style="=width:auto;">Name</th>
+                    <th>Price</th>
                     <th style="width:auto;">In stock</th>
                     <th style="width:auto;">Amount</th>
                     <th style="width:auto;">Buy</th>
@@ -91,10 +99,13 @@
                             <%=item.getName()%>
                         </td>
                         <td>
+                            <%=item.getPrice()%>
+                        </td>
+                        <td>
                             <%=item.getAmount()%>
                         </td>
                         <td>
-                            <input type="text" name="buyAmount" value="1">
+                            <input type="number" name="buyAmount" value="1">
                         </td>
                         <td>
                             <button class="fa fa-cart-plus" type="submit" name="buyItemId" value="<%=item.getId()%>"></button>

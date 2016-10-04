@@ -20,6 +20,8 @@
         <%=editingItem.getId()%><br><br>
         Name<br>
         <input type="text" name="newItemName" value="<%=editingItem.getName()%>"><br><br>
+        Price<br>
+        <input type="number" name="newItemPrice" value="<%=editingItem.getPrice()%>">
         Category<br>
         <select name="newCategoryId">
             <% for(ItemCategoryVO category : ItemCategoryVO.getAllCategories()){%>
